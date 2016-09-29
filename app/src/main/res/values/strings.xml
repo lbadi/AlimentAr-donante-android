@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Proyecto Alimentar</string>
+
+    <!-- Login/SignUp Activity -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="prompt_password_confirmation">Vuelva a ingresar la contraseña</string>
+    <string name="prompt_name">Nombre</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_up">Registrarse</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="error_invalid_email">La dirección de correo es invalida</string>
+    <string name="error_invalid_password">La contraseña es muy corta</string>
+    <string name="error_invalid_name">Nombre invalido</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="error_login">Usuario o contraseña invalidos</string>
+    <string name="error_signup">Hubo un error al registrarse</string>
+    <string name="error_pick_address">Es necesario seleccionar una dirección</string>
+
+    <string name="pick_address">Seleccione una dirección</string>
+
+
+
+
+</resources>

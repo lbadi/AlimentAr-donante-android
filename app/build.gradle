@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "com.android.proyectoalimentardonante"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    signingConfigs {
+        stage {
+            storeFile file('keystore/debug.jks')
+            storePassword 'android'
+            keyAlias 'alimentarDonante'
+            keyPassword 'proyectoalimentar123'
+        }
+//        prod {
+//            storeFile file('keystore/prod.keystore')
+//            storePassword 'hola123'
+//            keyAlias 'alimentARDonante'
+//            keyPassword 'hola123'
+//        }
+    }
+    buildTypes {
+        debug {
+            signingConfig null
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        stage {
+            signingConfig signingConfigs.stage
+            applicationId defaultConfig.applicationId + ".dev"
+            versionName defaultConfig.versionName + "-dev"
+        }
+//        prod {
+//            signingConfig signingConfigs.prod
+//        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'com.android.support:design:24.1.1'
+    compile 'com.google.android.gms:play-services-places:9.2.0'
+
+    // Dagger 2
+    compile 'com.google.dagger:dagger:2.5'
+    apt 'com.google.dagger:dagger-compiler:2.5'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // Butterknife
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+
+    // Retrofit
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+    // Functional streams
+    compile 'com.annimon:stream:1.1.1'
+
+    // For custom fonts
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+    testCompile 'junit:junit:4.12'
+}

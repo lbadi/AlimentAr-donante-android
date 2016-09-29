@@ -1,0 +1,21 @@
+package proyectoalimentar.alimentardonanteapp.model;
+
+public class User {
+
+    String email;
+    String name;
+    String username;
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+}
