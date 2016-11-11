@@ -4,7 +4,6 @@ public class User {
 
     String email;
     String name;
-    String username;
 
 
     public String getEmail() {
@@ -15,7 +14,4 @@ public class User {
         return name;
     }
 
-    public String getUsername() {
-        return username;
-    }
 }

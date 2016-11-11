@@ -6,9 +6,12 @@
     <string name="prompt_password">Contraseña</string>
     <string name="prompt_password_confirmation">Vuelva a ingresar la contraseña</string>
     <string name="prompt_name">Nombre</string>
-    <string name="action_sign_in">Ingresar</string>
-    <string name="action_sign_up">Registrarse</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_continue_sign_up">Siguiente paso</string>
+    <string name="action_sign_up">Crear cuenta</string>
     <string name="action_sign_in_short">Ingresar</string>
+    <string name="accept_terms_and_conditions">Acepto los <u>Términos y condiciones</u></string>
+    <string name="already_have_account">Ya tengo una cuenta!</string>
     <string name="pick_address">Seleccione una dirección</string>
     <string name="error_invalid_email">La dirección de correo es invalida</string>
     <string name="error_invalid_password">La contraseña es muy corta</string>
@@ -20,15 +23,52 @@
     <string name="error_signup">Hubo un error al registrarse</string>
     <string name="error_pick_address">Es necesario seleccionar una dirección</string>
 
-    <!--Donation-->
-    <string name="states">Estado</string>
+    <!--Donations-->
+    <string name="donations">Donaciones</string>
+    <string name="status">Estado</string>
     <string name="not_assigned">Sin asignar</string>
+    <string name="error_fetching_donations">"Hubo un error al cargar las donaciones"</string>
+    <string name="description">Descripción</string>
+    <string name="cancel">Cancelar</string>
 
-    <!--List of State-->
+    <!--List of Status-->
     <string name="open">Abierta</string>
     <string name="active">Activa</string>
     <string name="finished">Terminada</string>
     <string name="cancelled">Cancelada</string>
+
+    <!--Create new dontaion-->
+    <string name="new_description">Descripción</string>
+    <string name="all_day">Todo el día</string>
+    <string name="pickup_time_from_text">Desde</string>
+    <string name="pickup_time_to_text">Hasta</string>
+    <string name="create_donation">Crear donación</string>
+    <string name="pickup_date">Ingrese una fecha</string>
+    <string name="pickup_time">Ingrese un horario</string>
+    <string name="empty_field">Campo obligatorio</string>
+    <string name="error_create_donation">Error al crear la donación</string>
+    <string name="donation_created">Donación creada con exito</string>
+
+    <!--Nav-Items-->
+    <string name="sign_out">Cerrar sesión</string>
+    <string name="new_donation">Crear donación</string>
+    <string name="terms_and_conditions">Terminos y condiciones</string>
+    <string name="cancel_donation">Cancelar</string>
+
+    <!--Cancel donation view-->
+    <string name="cancel_donation_title">Cancelar donación</string>
+    <string name="cancel_donation_question">¿Desea cancelar la donación?</string>
+    <string name="go_back">Volver</string>
+    <string name="donation_cancelled">Donación cancelada</string>
+    <string name="cancel_error">Hubo un error al cancelar la donación</string>
+
+    <!--Terms and condition-->
+    <string name="terms_title">Lorem ipsum</string>
+    <string name="terms_body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla scelerisque neque vel posuere. Praesent porttitor vel magna non semper. Nunc elit arcu, maximus a lacinia quis, posuere vitae lorem. In hac habitasse platea dictumst. Suspendisse eu lorem suscipit, mattis.</string>
+
+    <string name="geo_api_key">AIzaSyDKecYoQLIIZQBT8F2YFJEqeKR4OMEv1JA</string>
+
+    <string name="sender_id">542771096368</string>
 
 
 </resources>

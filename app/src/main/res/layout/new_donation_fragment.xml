@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".ui.donations.NewDonationFragment">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="?attr/colorPrimary"
+            android:paddingTop="@dimen/toolbar_padding"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/create_donation"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                />
+            <ImageView
+                android:id="@+id/confirm_donation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="@dimen/description_padding"
+                android:src="@drawable/ic_check"/>
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/description_padding"
+            android:paddingBottom="@dimen/description_padding"
+            android:background="@drawable/border_bottom">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/description_padding"
+                android:src="@drawable/ic_text_left"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/description_text"
+                android:hint="@string/new_description"
+                android:nextFocusDown="@+id/pickup_date_from" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/description_padding"
+            android:paddingBottom="@dimen/description_padding"
+            android:background="@drawable/border_bottom">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/img_donation_time" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/all_day"
+                    android:paddingLeft="@dimen/description_padding"
+                    android:paddingBottom="@dimen/description_padding"
+                    android:paddingRight="@dimen/description_padding"
+                    android:text="@string/all_day" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/all_day_switch"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:id="@+id/from_layout"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pickup_time_from_text"
+                    android:padding="@dimen/description_padding"
+                    android:text="@string/pickup_time_from_text"
+                    />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/description_padding"
+                    android:id="@+id/pickup_time_from"
+                    android:hint="@string/pickup_time" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/to_layout"
+                android:layout_marginLeft="32dp"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pickup_time_to_text"
+                    android:padding="@dimen/description_padding"
+                    android:text="@string/pickup_time_to_text" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pickup_time_to"
+                    android:padding="@dimen/description_padding"
+                    android:hint="@string/pickup_time" />
+
+            </LinearLayout>
+
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="right">-->
+
+
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/pickup_date_to"-->
+                    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
+                    <!--style="?android:editTextStyle"-->
+                    <!--android:hint="@string/pickup_date" />-->
+
+            <!--</LinearLayout>-->
+        </LinearLayout>
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--style="?android:editTextStyle"-->
+            <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
+            <!--android:id="@+id/pickup_date_from"-->
+            <!--android:hint="@string/pickup_date" />-->
+
+    </LinearLayout>
+</ScrollView>

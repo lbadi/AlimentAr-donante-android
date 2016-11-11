@@ -1,36 +1,53 @@
 package proyectoalimentar.alimentardonanteapp.model;
 
 
-import java.util.Calendar;
+import com.google.gson.annotations.SerializedName;
+
+import org.joda.time.DateTime;
 
 public class Donation {
-    private State states;
-    private String description;
-    private Calendar pickupTimeFrom;
-    private Calendar pickupTimeTo;
 
+    Integer id;
+    Status status;
+    String description;
+    @SerializedName("pickup_time_from")
+    DateTime pickupTimeFrom;
+    @SerializedName("pickup_time_to")
+    DateTime pickupTimeTo;
+    Donator donator;
 
-    public Donation(State states, String description, Calendar pickupTimeFrom, Calendar pickupTimeTo){
-        this.states = states;
+    public Donation(Integer id,Status status, String description, DateTime pickupTimeFrom, DateTime pickupTimeTo,
+                    Donator donator){
+        this.id = id;
+        this.status = status;
         this.description = description;
         this.pickupTimeFrom = pickupTimeFrom;
         this.pickupTimeTo = pickupTimeTo;
+        this.donator = donator;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
-    public State getState() {
-        return states;
+    public Status getStatus() {
+        return status;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Calendar getPickupTimeFrom() {
+    public DateTime getPickupTimeFrom() {
         return pickupTimeFrom;
     }
 
-    public Calendar getPickupTimeTo() {
+    public DateTime getPickupTimeTo() {
         return pickupTimeTo;
     }
+
+    public Donator getDonator() {
+        return donator;
+    }
+
 }

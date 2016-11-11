@@ -20,7 +20,6 @@ public interface LoginService {
     @FormUrlEncoded
     Call<AuthenticatedUser> signUp(@Field("email") String email,
                                    @Field("password") String password,
-                                   @Field("password_confirmation") String passwordConfirmation,
                                    @Field("name") String name,
                                    @Field("address") String address);
 }
