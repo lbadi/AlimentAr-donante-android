@@ -23,9 +23,13 @@ import proyectoalimentar.alimentardonanteapp.services.DonationWatcherService;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
+import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import android.widget.TextView;
 import android.widget.Toast;
+
+import javax.inject.Inject;
 
 import proyectoalimentar.alimentardonanteapp.R;
 
@@ -39,6 +43,9 @@ public class DrawerActivity extends AppCompatActivity {
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    @Inject
+    UserStorage userStorage;
+
     private Map<DrawerItem, DrawerItemContainer> drawerItems;
     private DrawerItem selectedItem;
 
@@ -49,12 +56,15 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_activity);
         ButterKnife.bind(this);
+        init(savedInstanceState);
+    }
 
+    private void init(@Nullable Bundle savedInstanceState){
         //Register GCM Token
         registerToken();
         //Register Donations watcher
         registerDonationWatcher(this);
-
+        //Put user information in nav-bar Header
         drawerItems = new HashMap<>();
         Stream.of(DrawerItem.values())
                 .forEach(item ->
@@ -71,6 +81,7 @@ public class DrawerActivity extends AppCompatActivity {
             openDrawerItem(DEFAULT_ITEM);
         }
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

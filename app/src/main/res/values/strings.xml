@@ -54,6 +54,9 @@
     <string name="new_donation">Crear donación</string>
     <string name="terms_and_conditions">Terminos y condiciones</string>
     <string name="cancel_donation">Cancelar</string>
+    <string name="name">Nombre</string>
+    <string name="address">Dirección</string>
+
 
     <!--Cancel donation view-->
     <string name="cancel_donation_title">Cancelar donación</string>
@@ -61,6 +64,9 @@
     <string name="go_back">Volver</string>
     <string name="donation_cancelled">Donación cancelada</string>
     <string name="cancel_error">Hubo un error al cancelar la donación</string>
+
+    <!--Repost donation view-->
+    <string name
 
     <!--Terms and condition-->
     <string name="terms_title">Lorem ipsum</string>

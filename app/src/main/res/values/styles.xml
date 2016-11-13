@@ -27,4 +27,8 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 
+    <style name="NavItem">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
