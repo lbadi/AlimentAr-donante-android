@@ -19,6 +19,7 @@ import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 public class CustomGcmListenerService extends GcmListenerService{
 
     private static final String TAG = "MyGcmListenerService";
+    private static final String NOTIFICATION_TITLE = "Titulo de notification";
 
     /**
      * Called when message is received.
@@ -29,7 +30,7 @@ public class CustomGcmListenerService extends GcmListenerService{
      */
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String message = data.getString("message");
+        String message = data.getBundle("notification").getString("body");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
@@ -50,7 +51,7 @@ public class CustomGcmListenerService extends GcmListenerService{
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.img_default)
-                .setContentTitle("GCM Message")
+                .setContentTitle(NOTIFICATION_TITLE)
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
