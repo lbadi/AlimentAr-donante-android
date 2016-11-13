@@ -17,43 +17,79 @@
         android:background="@drawable/cancel_donation_background"
         >
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_caution"
-            android:layout_gravity="center_horizontal"
-            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/description_padding"
+            android:background="@drawable/border_bottom"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_caution"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="@string/repost_information"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:textAllCaps="true"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/description_padding"
+            android:layout_marginBottom="@dimen/description_padding"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/img_donation_time"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/description_padding"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Time"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="@string/cancel_donation_title"
-            android:textSize="24sp"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textAllCaps="true"
-            />
-
+            android:text="@string/description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
         <TextView
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="@string/cancel_donation_question"
-            android:textSize="16sp"
-            android:textColor="@color/gray"
-            />
+            android:text="Lorem ipsum dolorem"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:padding="@dimen/description_padding"
             android:gravity="center"
+            android:background="@drawable/border_top"
             android:orientation="horizontal"
             >
 
@@ -64,8 +100,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="16dp"
                 android:padding="8dp"
-                android:text="@string/go_back"
-                android:textSize="14sp"
+                android:text="@string/delete"
+                android:textSize="18sp"
                 android:textColor="@color/gray"
                 android:textAllCaps="true"
                 />
@@ -76,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="8dp"
-                android:text="@string/cancel"
-                android:textSize="14sp"
+                android:textSize="18sp"
+                android:text="@string/repost"
                 android:textColor="@color/colorPrimary"
                 android:textAllCaps="true"
                 />
