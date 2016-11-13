@@ -14,15 +14,15 @@ public class UserStorage {
 
     private static final String LOGGED_USER = "LOGGED_USER";
 
-    private User loggedUser;
+    private AuthenticatedUser loggedUser;
 
     @Inject
     UserStorage() {
     }
 
-    public User getLoggedUser() {
+    public AuthenticatedUser getLoggedUser() {
         if (loggedUser == null) {
-            loggedUser = StorageUtils.getObjectFromSharedPreferences(LOGGED_USER, User.class);
+            loggedUser = StorageUtils.getObjectFromSharedPreferences(LOGGED_USER, AuthenticatedUser.class);
         }
         return loggedUser;
     }
@@ -32,6 +32,12 @@ public class UserStorage {
         StorageUtils.storeInSharedPreferences(
                 Configuration.ACCESS_TOKEN, authenticatedUser.getAccessToken());
         StorageUtils.storeInSharedPreferences(LOGGED_USER, authenticatedUser);
+    }
+
+    public void logout(){
+        loggedUser = null;
+        StorageUtils.clearKey(Configuration.ACCESS_TOKEN);
+        StorageUtils.clearKey(LOGGED_USER);
     }
 
     public boolean isUserLogged() {

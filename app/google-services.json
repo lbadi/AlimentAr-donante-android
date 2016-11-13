@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "542771096368",
+    "firebase_url": "https://proyecto-alimentar-donante.firebaseio.com",
+    "project_id": "proyecto-alimentar-donante",
+    "storage_bucket": "proyecto-alimentar-donante.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542771096368:android:6db5dc45640f3e5f",
+        "android_client_info": {
+          "package_name": "proyectoalimentar.alimentardonanteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542771096368-3ev1tfobtrtpb8kcrlte57go7jgbo8l8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3oE3yqUdxD2aFabwSP6pX7uD5q2-3qDU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

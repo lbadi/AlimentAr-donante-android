@@ -5,8 +5,14 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.joda.time.DateTime;
+
+import java.lang.reflect.Type;
 
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
+import proyectoalimentar.alimentardonanteapp.model.serializers.DateTimeTypeAdapter;
 
 /**
  * A bunch of shared preferences utils methods to get and set different types of values.
@@ -18,6 +24,10 @@ public class StorageUtils {
             AlimentarApp.getContext().getSharedPreferences(
                     "ProyectoAlimentarDonanteSharedPreferences",
                     Activity.MODE_PRIVATE);
+
+    public static Gson gson = new GsonBuilder()
+            .registerTypeAdapter(DateTime.class, new DateTimeTypeAdapter())
+            .create();
 
     public static void storeInSharedPreferences(String key, String value) {
         sp.edit().putString(key, value).apply();
@@ -40,7 +50,6 @@ public class StorageUtils {
     }
 
     public static <T> void storeInSharedPreferences(String key, T value) {
-        Gson gson = new Gson();
         storeInSharedPreferences(key, gson.toJson(value));
     }
 
@@ -66,8 +75,11 @@ public class StorageUtils {
 
     public static <T> T getObjectFromSharedPreferences(String key, Class<T> clazz) {
         String stringValue = getStringFromSharedPreferences(key, null);
-        Gson gson = new Gson();
         return gson.fromJson(stringValue, clazz);
+    }
+    public static <T> T getObjectFromSharedPreferences(String key, Type type) {
+        String stringValue = getStringFromSharedPreferences(key, null);
+        return gson.fromJson(stringValue, type);
     }
 
     public static void clearKey(String key) {

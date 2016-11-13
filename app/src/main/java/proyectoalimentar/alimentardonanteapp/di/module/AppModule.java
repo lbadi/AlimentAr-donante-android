@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 
 import dagger.Module;
 import dagger.Provides;
+import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 
 @Module
 public class AppModule {

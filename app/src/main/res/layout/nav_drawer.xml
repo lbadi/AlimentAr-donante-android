@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/img_drawer_cover">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/portrait"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/name"
+            android:textColor="@color/colorAccent"
+            />
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/address"
+            android:textColor="@color/colorAccent"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/nav_item_new_donation"
+        style="@style/NavDrawerElement">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_drawer_dontations"
+            android:layout_marginRight="@dimen/description_padding"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/NavItem"
+            android:text="@string/create_donation"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/nav_item_donations"
+        style="@style/NavDrawerElement">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_drawer_history"
+            android:layout_marginRight="@dimen/description_padding"/>
+        <TextView
+            android:layout_height="wrap_content"
+            style="@style/NavItem"
+            android:layout_width="wrap_content"
+            android:text="@string/donations"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/nav_item_terms"
+        style="@style/NavDrawerElement">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_drawer_terms_conditions"
+            android:layout_marginRight="@dimen/description_padding"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/NavItem"
+            android:text="@string/terms_and_conditions"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sign_out"
+        style="@style/NavDrawerElement">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_drawer_logout"
+            android:layout_marginRight="@dimen/description_padding"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/NavItem"
+            android:text="@string/sign_out"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -4,6 +4,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.joda.time.DateTime;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +13,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import proyectoalimentar.alimentardonanteapp.Configuration;
+import proyectoalimentar.alimentardonanteapp.model.Status;
+import proyectoalimentar.alimentardonanteapp.model.serializers.DateTimeTypeAdapter;
+import proyectoalimentar.alimentardonanteapp.model.serializers.StateTypeAdapter;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -48,6 +53,8 @@ public class RetrofitServices {
 
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .registerTypeAdapter(DateTime.class, new DateTimeTypeAdapter())
+                .registerTypeAdapter(Status.class , new StateTypeAdapter())
                 .create();
 
         sRetrofit = new Retrofit.Builder()
