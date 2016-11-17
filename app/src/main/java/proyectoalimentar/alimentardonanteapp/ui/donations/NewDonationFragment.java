@@ -29,6 +29,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +66,8 @@ public class NewDonationFragment extends Fragment{
     LinearLayout toLayout;
     @BindView(R.id.all_day_switch)
     Switch allDaySwitch;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @Inject
     LayoutInflater layoutInflater;
@@ -161,10 +164,12 @@ public class NewDonationFragment extends Fragment{
                 .withTime(formatTime.parseLocalTime(pickupTimeTo.getText().toString()));
         String description = descriptionText.getText().toString();
 
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         donationRepository.createDonation(description, dateTimeFrom.toString(),
                 dateTimeTo.toString(), new RepoCallBack<Boolean>() {
             @Override
             public void onSuccess(Boolean created) {
+                progressBar.setVisibility(ProgressBar.GONE);
                 if(created){
                     if(onDonationCreatedListener != null){
                         onDonationCreatedListener.onDonationCreated();
@@ -175,6 +180,7 @@ public class NewDonationFragment extends Fragment{
 
             @Override
             public void onError(String error) {
+                progressBar.setVisibility(ProgressBar.GONE);
                 showCreateError();
             }
         });
