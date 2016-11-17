@@ -74,7 +74,7 @@ public class DrawerActivity extends AppCompatActivity {
         //Register GCM Token
         registerToken();
         //Register Donations watcher
-        registerDonationWatcher(this);
+//        registerDonationWatcher(this);
         //Put user information in nav-bar Header
         fetchDonatorInformation();
         drawerItems = new HashMap<>();

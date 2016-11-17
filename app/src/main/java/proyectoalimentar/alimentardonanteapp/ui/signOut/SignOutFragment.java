@@ -11,9 +11,11 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
+import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.login.LoginActivity;
+import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 
 public class SignOutFragment extends Fragment{
@@ -28,7 +30,11 @@ public class SignOutFragment extends Fragment{
         AlimentarApp.inject(this);
 
         userStorage.logout();
+        removeToken();
         startActivity(new Intent(this.getActivity(), LoginActivity.class));
+    }
 
+    private void removeToken(){
+        StorageUtils.clearKey(Configuration.SENT_TOKEN_TO_SERVER); //Clear token
     }
 }

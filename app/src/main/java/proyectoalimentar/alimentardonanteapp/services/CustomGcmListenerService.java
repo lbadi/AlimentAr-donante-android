@@ -34,7 +34,6 @@ public class CustomGcmListenerService extends GcmListenerService{
         String message = data.getBundle("notification").getString("body");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
-
         sendNotification(message);
     }
 

@@ -35,7 +35,6 @@ public class RegistrationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
         try {
             Log.i(TAG,"Registration started");
             InstanceID instanceID = InstanceID.getInstance(this);
