@@ -81,13 +81,14 @@ public class DonationFragment extends Fragment {
         donationAdapter = new DonationAdapter(cancelDonationView);
         donationList.setAdapter(donationAdapter);
         donationList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        swipeRefreshLayout.setRefreshing(true);
-        updateDonations();
+        swipeRefreshLayout.post(() -> {
+            swipeRefreshLayout.setRefreshing(true);
+            updateDonations();
+        }); //Activate manually refresh animation
     }
 
     private void setupSwipeToRefresh(){
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent);
-//        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             updateDonations();
         });
