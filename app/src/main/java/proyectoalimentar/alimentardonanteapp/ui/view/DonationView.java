@@ -38,6 +38,8 @@ public class DonationView extends FrameLayout{
     LinearLayout volunteer_information;
     @BindView(R.id.cancel)
     TextView cancelDonation;
+    @BindView(R.id.assigned_to)
+    TextView assignedTo;
 
 
     CancelDonationView cancelDonationView;

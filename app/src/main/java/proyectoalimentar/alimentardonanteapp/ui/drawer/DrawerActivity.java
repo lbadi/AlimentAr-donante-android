@@ -18,7 +18,11 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.Configuration;
+import proyectoalimentar.alimentardonanteapp.model.Donator;
+import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
+import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 import proyectoalimentar.alimentardonanteapp.services.DonationWatcherService;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
@@ -42,9 +46,15 @@ public class DrawerActivity extends AppCompatActivity {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.name)
+    TextView name;
+    @BindView(R.id.address)
+    TextView address;
 
     @Inject
     UserStorage userStorage;
+    @Inject
+    DonationRepository donationRepository;
 
     private Map<DrawerItem, DrawerItemContainer> drawerItems;
     private DrawerItem selectedItem;
@@ -54,6 +64,7 @@ public class DrawerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AlimentarApp.inject(this);
         setContentView(R.layout.drawer_activity);
         ButterKnife.bind(this);
         init(savedInstanceState);
@@ -65,6 +76,7 @@ public class DrawerActivity extends AppCompatActivity {
         //Register Donations watcher
         registerDonationWatcher(this);
         //Put user information in nav-bar Header
+        fetchDonatorInformation();
         drawerItems = new HashMap<>();
         Stream.of(DrawerItem.values())
                 .forEach(item ->
@@ -180,6 +192,28 @@ public class DrawerActivity extends AppCompatActivity {
                 .getSystemService(ALARM_SERVICE);
         am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime,
                 6000, sender);
+    }
+
+    public void fetchDonatorInformation(){
+        donationRepository.getMyInformation(new RepoCallBack<Donator>() {
+            @Override
+            public void onSuccess(Donator donator) {
+                refreshDonatorInformation(donator);
+            }
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+    private void refreshDonatorInformation(Donator donator){
+        if(donator.getName() != null && !donator.getName().isEmpty()){
+            name.setText(donator.getName());
+        }
+        if(donator.getAddress() != null && !donator.getAddress().isEmpty()) {
+            address.setText(donator.getAddress());
+        }
     }
 
 }

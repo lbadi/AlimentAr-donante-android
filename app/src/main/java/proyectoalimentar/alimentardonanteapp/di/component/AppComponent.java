@@ -11,6 +11,7 @@ import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.CancelDonationView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.DonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
+import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.login.LoginActivity;
 import proyectoalimentar.alimentardonanteapp.ui.signOut.SignOutFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.AditionalDataSignUpFragment;
@@ -44,6 +45,8 @@ public interface AppComponent {
     void inject(DonationView view);
 
     void inject(RegistrationIntentService service);
+
+    void inject (DrawerActivity drawerActivity);
 
 
 }

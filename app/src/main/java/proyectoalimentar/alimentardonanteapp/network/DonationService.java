@@ -3,6 +3,7 @@ package proyectoalimentar.alimentardonanteapp.network;
 import java.util.List;
 
 import proyectoalimentar.alimentardonanteapp.model.Donation;
+import proyectoalimentar.alimentardonanteapp.model.Donator;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -29,5 +30,9 @@ public interface DonationService {
 
     @POST("donations/{id}/finish")
     Call<Void> cancel(@Path("id") Integer id);
+
+    @GET("donators/me")
+    Call<Donator> getMyInformation();
+
 
 }

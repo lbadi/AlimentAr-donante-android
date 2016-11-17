@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.model.AuthenticatedUser;
 import proyectoalimentar.alimentardonanteapp.model.Donation;
+import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.network.DonationService;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
@@ -127,6 +128,24 @@ public class DonationRepository {
 
             @Override
             public void onFailure(Call<List<Donation>> call, Throwable t) {
+                repoCallBack.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void getMyInformation(RepoCallBack<Donator> repoCallBack){
+        donationService.getMyInformation().enqueue(new Callback<Donator>() {
+            @Override
+            public void onResponse(Call<Donator> call, Response<Donator> response) {
+                if(response.isSuccessful()){
+                    repoCallBack.onSuccess(response.body());
+                }else{
+                    repoCallBack.onError(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Donator> call, Throwable t) {
                 repoCallBack.onError(t.getMessage());
             }
         });

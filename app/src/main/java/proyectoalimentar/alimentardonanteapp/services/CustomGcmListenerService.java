@@ -30,6 +30,7 @@ public class CustomGcmListenerService extends GcmListenerService{
      */
     @Override
     public void onMessageReceived(String from, Bundle data) {
+        Log.d(TAG, "Keyset: " + data.keySet());
         String message = data.getBundle("notification").getString("body");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
