@@ -44,6 +44,7 @@ public class DonationView extends FrameLayout{
 
     CancelDonationView cancelDonationView;
     DateTimeFormatter formatTime = DateTimeFormat.forPattern("HH-mm");
+    CancelDonationView.OnDonationCancelledCallBack onDonationCancelledCallBack;
     Donation donation;
 
     @Inject
@@ -106,7 +107,10 @@ public class DonationView extends FrameLayout{
     private void setOnCancelListener(){
         if(cancelDonationView != null) {
             cancelDonationView.setOnDonationCancelledCallBack(
-                    () -> Toast.makeText(getContext(), R.string.donation_cancelled, Toast.LENGTH_SHORT));
+                    (donation) ->{
+                        Toast.makeText(getContext(), R.string.donation_cancelled, Toast.LENGTH_SHORT);
+                        this.onDonationCancelledCallBack.onDonationCancelled(donation);
+                    });
         }
 }
 
@@ -117,4 +121,11 @@ public class DonationView extends FrameLayout{
         }
     }
 
+    public void setOnDonationCancelledCallBack(CancelDonationView.OnDonationCancelledCallBack onDonationCancelledCallBack) {
+        this.onDonationCancelledCallBack = onDonationCancelledCallBack;
+    }
+
+    public Donation getDonation() {
+        return donation;
+    }
 }

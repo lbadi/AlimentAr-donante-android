@@ -32,6 +32,11 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    public void removeDonation(Donation donation){
+        this.donations.remove(donation);
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -91,6 +96,9 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
 
         void populateWithDonation(Donation donation, CancelDonationView cancelDonationView){
             donationView.setDonation(donation);
+            donationView.setOnDonationCancelledCallBack((d) -> {
+                removeDonation(d);
+            });
             donationView.setCancelDonationView(cancelDonationView);
         }
     }

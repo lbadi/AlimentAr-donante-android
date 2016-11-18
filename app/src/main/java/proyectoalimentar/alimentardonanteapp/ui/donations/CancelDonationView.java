@@ -70,7 +70,7 @@ public class CancelDonationView extends FrameLayout{
                     if (canceled) {
                         CancelDonationView.this.setVisibility(GONE);
                         if (onDonationCancelledCallBack != null) {
-                            onDonationCancelledCallBack.onDonationCancelled();
+                            onDonationCancelledCallBack.onDonationCancelled(donation);
                         }
                     } else {
                         onError(null);
@@ -93,7 +93,7 @@ public class CancelDonationView extends FrameLayout{
 
     public interface OnDonationCancelledCallBack{
 
-        public void onDonationCancelled();
+        public void onDonationCancelled(Donation donation);
     }
 
     public void setDonation(Donation donation) {
