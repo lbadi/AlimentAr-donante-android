@@ -82,6 +82,9 @@ public class NewDonationFragment extends Fragment{
     DateTime dateTimeFrom;
     DateTime dateTimeTo;
 
+    CharSequence lastTimeSelectedFrom;
+    CharSequence lastTimeSelectedTo;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,10 +122,14 @@ public class NewDonationFragment extends Fragment{
 
     private void setEnablePickUpTimes(boolean value){
         if(value) {
+            pickupTimeFrom.setText(lastTimeSelectedFrom);
+            pickupTimeTo.setText(lastTimeSelectedTo);
             fromLayout.setVisibility(LinearLayout.VISIBLE);
             toLayout.setVisibility(LinearLayout.VISIBLE);
         }else{
-            //Set time to start/end of the actual day
+            //Set time to start/end of the actual day and save the value to restore if nedeed
+            lastTimeSelectedFrom = pickupTimeFrom.getText();
+            lastTimeSelectedTo = pickupTimeTo.getText();
             pickupTimeFrom.setText(formatTime.print(new DateTime().withTimeAtStartOfDay()));
             pickupTimeTo.setText(formatTime.print(new DateTime().plusDays(1).withTimeAtStartOfDay().minusMinutes(1)));
             fromLayout.setVisibility(LinearLayout.GONE);

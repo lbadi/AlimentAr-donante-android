@@ -55,6 +55,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_background"
                     android:id="@+id/description_text"
                     android:hint="@string/new_description"
                     android:nextFocusDown="@+id/pickup_date_from" />
