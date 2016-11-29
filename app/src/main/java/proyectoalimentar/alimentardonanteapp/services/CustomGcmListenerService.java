@@ -1,19 +1,14 @@
 package proyectoalimentar.alimentardonanteapp.services;
 
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
-import proyectoalimentar.alimentardonanteapp.R;
-import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
+import proyectoalimentar.alimentardonanteapp.model.NotificationType;
+import proyectoalimentar.alimentardonanteapp.utils.CustomNotificationBuilder;
 
 
 public class CustomGcmListenerService extends GcmListenerService{
@@ -31,10 +26,11 @@ public class CustomGcmListenerService extends GcmListenerService{
     @Override
     public void onMessageReceived(String from, Bundle data) {
         Log.d(TAG, "Keyset: " + data.keySet());
-        String message = data.getBundle("notification").getString("body");
+        String message = data.getString("message_body");
+        String notificationType = data.getString("n_type");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
-        sendNotification(message);
+        sendNotification(message,NotificationType.valueOf(notificationType));
     }
 
     /**
@@ -42,24 +38,11 @@ public class CustomGcmListenerService extends GcmListenerService{
      *
      * @param message GCM message received.
      */
-    private void sendNotification(String message) {
-        Intent intent = new Intent(this, DrawerActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.img_default)
-                .setContentTitle(NOTIFICATION_TITLE)
-                .setContentText(message)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
+    private void sendNotification(String message, NotificationType notificationType) {
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(0 /* ID of notification */,CustomNotificationBuilder.build(notificationType,message,this));
     }
 }

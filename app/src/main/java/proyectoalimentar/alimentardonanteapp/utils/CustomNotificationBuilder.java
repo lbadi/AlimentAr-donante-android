@@ -1,5 +1,6 @@
 package proyectoalimentar.alimentardonanteapp.utils;
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +19,7 @@ public class CustomNotificationBuilder {
 
     private static final String NOTIFICATION_TITLE = "Titulo de notification";
 
-    public static NotificationCompat.Builder build(NotificationType notificationType, String message,Context context){
+    public static Notification build(NotificationType notificationType, String message, Context context){
         switch (notificationType){
             case ACTIVATION_TIME_PASSED:
             break;
@@ -35,7 +36,7 @@ public class CustomNotificationBuilder {
                         .setContentText(message)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
+                        .setContentIntent(pendingIntent).build();
             case DONATION_EXPIRED:
             break;
 
