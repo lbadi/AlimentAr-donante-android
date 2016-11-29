@@ -1,6 +1,7 @@
 package proyectoalimentar.alimentardonanteapp.ui.signUp;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
@@ -94,6 +98,13 @@ public class AditionalDataSignUpFragment extends Fragment{
         try {
             startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
         } catch (GooglePlayServicesRepairableException e) {
+            GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+            int error = googleApiAvailability.isGooglePlayServicesAvailable(this.getContext());
+            if(error != ConnectionResult.SUCCESS){
+                // ask user to update google play services.
+                Dialog updateDialog = googleApiAvailability.getErrorDialog(this.getActivity(),error,0);
+                updateDialog.show();
+            }
             e.printStackTrace();
         } catch (GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
