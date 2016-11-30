@@ -32,7 +32,7 @@ public class CustomNotificationBuilder {
                 Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 return new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.img_default)
-                        .setContentTitle(NOTIFICATION_TITLE)
+                        .setContentTitle(context.getString(notificationType.getTitleResource()))
                         .setContentText(message)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)

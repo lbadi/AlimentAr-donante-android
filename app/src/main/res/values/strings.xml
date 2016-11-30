@@ -70,6 +70,10 @@
     <string name="repost">Republicar</string>
     <string name="delete">Eliminar</string>
 
+    <string name="notifiaction_activated_title">Donación activada</string>
+    <string name="notifiaction_expired_title">Donación expirada</string>
+    <string name="notifiaction_time_passed_title">Reabrir donación</string>
+
     <!--Terms and condition-->
     <string name="terms_title">Lorem ipsum</string>
     <string name="terms_body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla scelerisque neque vel posuere. Praesent porttitor vel magna non semper. Nunc elit arcu, maximus a lacinia quis, posuere vitae lorem. In hac habitasse platea dictumst. Suspendisse eu lorem suscipit, mattis.</string>

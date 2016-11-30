@@ -30,7 +30,7 @@ public class CustomGcmListenerService extends GcmListenerService{
         String notificationType = data.getString("n_type");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
-        sendNotification(message,NotificationType.valueOf(notificationType));
+        sendNotification(message,NotificationType.fromString(notificationType));
     }
 
     /**
