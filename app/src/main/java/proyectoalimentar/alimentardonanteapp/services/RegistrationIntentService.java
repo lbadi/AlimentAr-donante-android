@@ -42,8 +42,7 @@ public class RegistrationIntentService extends IntentService {
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             Log.i(TAG, "GCM Registration Token: " + token);
             sendRegistrationTokenToServer(token);
-            Log.i(TAG, "GCM Registration Token: " + "Registration complete");
-            storeSendStatus(true);
+
 
             // Notify UI that registration has completed.
             Intent registrationComplete = new Intent(Configuration.REGISTRATION_COMPLETE);
@@ -55,7 +54,7 @@ public class RegistrationIntentService extends IntentService {
     }
 
 
-    private void sendRegistrationTokenToServer(String token) throws Exception{
+    private void sendRegistrationTokenToServer(final String token) throws Exception{
         notificationService.registerToken(token, DEVICE_TYPE).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -63,6 +62,10 @@ public class RegistrationIntentService extends IntentService {
                     storeSendStatus(false);
                     Log.i(TAG, "GCM Registration Token: " + "Registration error");
                     return;
+                }else{
+                    Log.i(TAG, "GCM Registration Token: " + "Registration complete");
+                    storeSendStatus(true);
+                    storeToken(token);
                 }
             }
 
@@ -76,5 +79,9 @@ public class RegistrationIntentService extends IntentService {
 
     private void storeSendStatus(boolean send){
         StorageUtils.storeInSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, send);
+    }
+
+    private void storeToken(String token){
+        StorageUtils.storeInSharedPreferences(Configuration.TOKEN, token);
     }
 }

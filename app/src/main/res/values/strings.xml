@@ -22,6 +22,7 @@
     <string name="error_login">Usuario o contraseña invalidos</string>
     <string name="error_signup">Hubo un error al registrarse</string>
     <string name="error_pick_address">Es necesario seleccionar una dirección</string>
+    <string name="error_signout">Hubo un error al desloguearse</string>
 
     <!--Donations-->
     <string name="donations">Donaciones</string>

@@ -14,4 +14,8 @@ public interface NotificationService {
     @FormUrlEncoded
     Call<Void> registerToken(@Field("device_token") String token, @Field("device_type") String deviceType);
 
+    @POST("o_auth/delete_token")
+    @FormUrlEncoded
+    Call<Void> deleteToken(@Field("device_token") String token);
+
 }

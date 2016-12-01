@@ -11,5 +11,6 @@ public class Configuration {
     public static final String SENT_TOKEN_TO_SERVER = "SENT_TOKEN_TO_SERVER";
     public static final String REGISTRATION_COMPLETE = "REGISTRATION_COMPLETE";
     public static final String LAST_DONATIONS = "LAST_DONATIONS";
+    public static final String TOKEN = "token";
 
 }
