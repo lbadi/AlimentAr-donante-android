@@ -60,6 +60,34 @@ public class DonationRepository {
         });
     }
 
+    public void onGoingDonation(Donation donation, RepoCallBack<Boolean> repoCallBack){
+        donationService.onGoing(donation.getId()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                repoCallBack.onSuccess(response.isSuccessful());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                repoCallBack.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void openDonation(Donation donation, RepoCallBack<Boolean> repoCallBack){
+        donationService.open(donation.getId()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                repoCallBack.onSuccess(response.isSuccessful());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                repoCallBack.onError(t.getMessage());
+            }
+        });
+    }
+
     public void activeDonations(RepoCallBack<List<Donation>> repoCallBack){
         donationService.listActive().enqueue(new Callback<List<Donation>>() {
             @Override

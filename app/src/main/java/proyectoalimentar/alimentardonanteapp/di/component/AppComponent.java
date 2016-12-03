@@ -8,11 +8,13 @@ import dagger.Component;
 import proyectoalimentar.alimentardonanteapp.di.module.AppModule;
 import proyectoalimentar.alimentardonanteapp.di.module.NetworkModule;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
+import proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.CancelDonationView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.DonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.login.LoginActivity;
+import proyectoalimentar.alimentardonanteapp.ui.profile.ProfileFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signOut.SignOutFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.AditionalDataSignUpFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.MainDataSignUpFragment;
@@ -47,6 +49,10 @@ public interface AppComponent {
     void inject(RegistrationIntentService service);
 
     void inject (DrawerActivity drawerActivity);
+
+    void inject (ActivatedQuestionView activatedQuestionView);
+
+    void inject (ProfileFragment profileFragment);
 
 
 }

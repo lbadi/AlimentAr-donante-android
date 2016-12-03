@@ -14,4 +14,10 @@
 
     <include layout="@layout/nav_drawer" />
 
+    <proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/activated_question_view"/>
+
 </android.support.v4.widget.DrawerLayout>

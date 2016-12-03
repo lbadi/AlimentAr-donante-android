@@ -20,16 +20,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.Configuration;
+import proyectoalimentar.alimentardonanteapp.model.Donation;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
+import proyectoalimentar.alimentardonanteapp.model.NotificationType;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 import proyectoalimentar.alimentardonanteapp.services.DonationWatcherService;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
+import proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +54,8 @@ public class DrawerActivity extends AppCompatActivity {
     TextView name;
     @BindView(R.id.address)
     TextView address;
+    @BindView(R.id.activated_question_view)
+    ActivatedQuestionView activatedQuestionView;
 
     @Inject
     UserStorage userStorage;
@@ -92,6 +98,7 @@ public class DrawerActivity extends AppCompatActivity {
         }else{
             openDrawerItem(DEFAULT_ITEM);
         }
+        reactToIntent();
     }
 
 
@@ -214,6 +221,42 @@ public class DrawerActivity extends AppCompatActivity {
         if(donator.getAddress() != null && !donator.getAddress().isEmpty()) {
             address.setText(donator.getAddress());
         }
+    }
+
+    private void reactToIntent(){
+        Intent intent = getIntent();
+        NotificationType notificationType;
+        if(intent == null){
+            return;
+        }
+        notificationType = getNotificationType(intent);
+        if( notificationType == null){
+            return;
+        }
+        switch (notificationType){
+            case ACTIVATION_TIME_PASSED:
+                reactToActivationTimePassed(intent);
+                break;
+            default:
+        }
+
+    }
+
+    private void reactToActivationTimePassed(Intent intent){
+        Donation donation = (Donation) intent.getSerializableExtra(Configuration.DONATION);
+        if(donation==null){
+            return;
+        }
+        activatedQuestionView.setDonation(donation);
+        activatedQuestionView.setOnResponseCallback(confirmActivation -> {
+
+        });
+        activatedQuestionView.setVisibility(View.VISIBLE);
+
+    }
+
+    private NotificationType getNotificationType(Intent intent){
+        return (NotificationType) intent.getSerializableExtra(Configuration.NOTIFICATION_TYPE);
     }
 
 }

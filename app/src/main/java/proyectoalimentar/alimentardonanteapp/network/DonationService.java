@@ -31,6 +31,12 @@ public interface DonationService {
     @POST("donations/{id}/finish")
     Call<Void> cancel(@Path("id") Integer id);
 
+    @POST("donations/{id}/ongoing")
+    Call<Void> onGoing(@Path("id") Integer id);
+
+    @POST("donations/{id}/open")
+    Call<Void> open(@Path("id") Integer id);
+
     @GET("donators/me")
     Call<Donator> getMyInformation();
 

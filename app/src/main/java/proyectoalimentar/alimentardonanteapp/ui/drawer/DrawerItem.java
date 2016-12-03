@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.ui.donations.DonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
+import proyectoalimentar.alimentardonanteapp.ui.profile.ProfileFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signOut.SignOutFragment;
 import proyectoalimentar.alimentardonanteapp.ui.terms_and_condition.TermsAndConditionFragment;
 
@@ -13,6 +14,7 @@ public enum DrawerItem {
 
     DONATIONS(R.id.nav_item_donations, DonationFragment::new),
     NEW_DONATION(R.id.nav_item_new_donation, NewDonationFragment::new),
+    PROFILE(R.id.nav_item_profile, ProfileFragment::new),
     TERMS(R.id.nav_item_terms, TermsAndConditionFragment::new),
     SIGN_OUT(R.id.sign_out, SignOutFragment::new);
 

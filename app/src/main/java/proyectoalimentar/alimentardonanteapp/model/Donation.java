@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.joda.time.DateTime;
 
-public class Donation {
+import java.io.Serializable;
+
+public class Donation implements Serializable{
 
     Integer id;
     Status status;

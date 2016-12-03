@@ -13,6 +13,7 @@ import proyectoalimentar.alimentardonanteapp.ui.donations.DonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.login.LoginActivity;
+import proyectoalimentar.alimentardonanteapp.ui.profile.ProfileFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signOut.SignOutFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.AditionalDataSignUpFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.MainDataSignUpFragment;
@@ -116,6 +117,13 @@ public class AlimentarApp extends Application {
                 .appModule(new AppModule(activity))
                 .build()
                 .inject(activity);
+    }
+
+    public static void inject(ProfileFragment profileFragment){
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(profileFragment.getContext()))
+                .build()
+                .inject(profileFragment);
     }
 
     private void setupCalligraphy() {

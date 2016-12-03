@@ -8,6 +8,7 @@ public class Donator {
     private double lat;
     private double lng;
     private String address;
+    private Avatar avatar;
 
     public Donator(String name, String address, String email) {
         this.name = name;
@@ -77,5 +78,13 @@ public class Donator {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 }
