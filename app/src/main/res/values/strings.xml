@@ -86,6 +86,8 @@
     <!--Profile-->
     <string name="profile">Perfil</string>
     <string name="name_explanation">Nombre con el cual usted aparecera para los voluntarios</string>
+    <string name="error_fetching_donator">Error al obtener los datos del usuario</string>
+    <string name="error_updating_donator">Error al actualizar la información</string>
 
     <!--Terms and condition-->
     <string name="terms_title">Lorem ipsum</string>

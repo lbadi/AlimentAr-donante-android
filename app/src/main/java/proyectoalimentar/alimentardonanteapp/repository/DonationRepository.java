@@ -161,23 +161,6 @@ public class DonationRepository {
         });
     }
 
-    public void getMyInformation(RepoCallBack<Donator> repoCallBack){
-        donationService.getMyInformation().enqueue(new Callback<Donator>() {
-            @Override
-            public void onResponse(Call<Donator> call, Response<Donator> response) {
-                if(response.isSuccessful()){
-                    repoCallBack.onSuccess(response.body());
-                }else{
-                    repoCallBack.onError(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Donator> call, Throwable t) {
-                repoCallBack.onError(t.getMessage());
-            }
-        });
-    }
 
     //TODO
 //    private List<Donation> filterMyDonations(List<Donation> donations){

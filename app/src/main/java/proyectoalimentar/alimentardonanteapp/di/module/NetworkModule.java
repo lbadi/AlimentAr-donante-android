@@ -3,7 +3,7 @@ package proyectoalimentar.alimentardonanteapp.di.module;
 import dagger.Module;
 import dagger.Provides;
 import proyectoalimentar.alimentardonanteapp.network.DonationService;
-import proyectoalimentar.alimentardonanteapp.network.LoginService;
+import proyectoalimentar.alimentardonanteapp.network.UserService;
 import proyectoalimentar.alimentardonanteapp.network.NotificationService;
 import proyectoalimentar.alimentardonanteapp.network.RetrofitServices;
 
@@ -11,8 +11,8 @@ import proyectoalimentar.alimentardonanteapp.network.RetrofitServices;
 public class NetworkModule {
 
     @Provides
-    LoginService provideLoginService(){
-        return RetrofitServices.getService(LoginService.class);
+    UserService provideLoginService(){
+        return RetrofitServices.getService(UserService.class);
     }
 
     @Provides

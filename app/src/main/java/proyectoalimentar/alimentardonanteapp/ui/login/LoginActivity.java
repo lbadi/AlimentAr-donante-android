@@ -19,10 +19,10 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.R;
+import proyectoalimentar.alimentardonanteapp.network.UserService;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 import proyectoalimentar.alimentardonanteapp.repository.UserRepository;
 import proyectoalimentar.alimentardonanteapp.model.AuthenticatedUser;
-import proyectoalimentar.alimentardonanteapp.network.LoginService;
 import proyectoalimentar.alimentardonanteapp.network.RetrofitServices;
 import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.SignUpActivity;
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindColor(R.color.colorPrimaryDark) int enabledColorSignUp;
 
 
-    LoginService loginService;
+    UserService userService;
 
     @Inject
     UserRepository userRepository;
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        loginService = RetrofitServices.getService(LoginService.class);
+        userService = RetrofitServices.getService(UserService.class);
 
         enableButton(signIn,false, disabledColor); //The user must accept terms first
         enableButton(signUp,false, disabledColor);
@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginError();
                 }
             });
-//            loginService.login(email,password).enqueue(new Callback<AuthenticatedUser>() {
+//            userService.login(email,password).enqueue(new Callback<AuthenticatedUser>() {
 //                @Override
 //                public void onResponse(Call<AuthenticatedUser> call, Response<AuthenticatedUser> response) {
 //                    progressBar.setVisibility(View.INVISIBLE);

@@ -7,25 +7,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.R;
-import proyectoalimentar.alimentardonanteapp.model.Donation;
-import proyectoalimentar.alimentardonanteapp.network.DonationService;
-import proyectoalimentar.alimentardonanteapp.network.LoginService;
-import proyectoalimentar.alimentardonanteapp.network.RetrofitServices;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
-import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,12 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import java.lang.reflect.Method;
 
 import javax.inject.Inject;
 

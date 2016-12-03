@@ -37,8 +37,5 @@ public interface DonationService {
     @POST("donations/{id}/open")
     Call<Void> open(@Path("id") Integer id);
 
-    @GET("donators/me")
-    Call<Donator> getMyInformation();
-
 
 }

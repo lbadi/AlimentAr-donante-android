@@ -25,6 +25,7 @@ import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.model.NotificationType;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
+import proyectoalimentar.alimentardonanteapp.repository.UserRepository;
 import proyectoalimentar.alimentardonanteapp.services.DonationWatcherService;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView;
@@ -61,6 +62,8 @@ public class DrawerActivity extends AppCompatActivity {
     UserStorage userStorage;
     @Inject
     DonationRepository donationRepository;
+    @Inject
+    UserRepository userRepository;
 
     private Map<DrawerItem, DrawerItemContainer> drawerItems;
     private DrawerItem selectedItem;
@@ -202,7 +205,7 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     public void fetchDonatorInformation(){
-        donationRepository.getMyInformation(new RepoCallBack<Donator>() {
+        userRepository.getMyInformation(new RepoCallBack<Donator>() {
             @Override
             public void onSuccess(Donator donator) {
                 refreshDonatorInformation(donator);
