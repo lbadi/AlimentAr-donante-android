@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Proyecto Alimentar</string>
 
+    <!--Generics-->
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+
     <!-- Login/SignUp Activity -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Contraseña</string>
@@ -71,9 +75,17 @@
     <string name="repost">Republicar</string>
     <string name="delete">Eliminar</string>
 
+    <!--Donation activated question view-->
+    <string name="activated_question">¿El usuario %1$s ya retiro la donación?</string>
+
+    <!--Notifications-->
     <string name="notifiaction_activated_title">Donación activada</string>
     <string name="notifiaction_expired_title">Donación expirada</string>
     <string name="notifiaction_time_passed_title">Reabrir donación</string>
+
+    <!--Profile-->
+    <string name="profile">Perfil</string>
+    <string name="name_explanation">Nombre con el cual usted aparecera para los voluntarios</string>
 
     <!--Terms and condition-->
     <string name="terms_title">Lorem ipsum</string>

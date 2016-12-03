@@ -83,6 +83,21 @@
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/nav_item_profile"
+        style="@style/NavDrawerElement">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_drawer_history"
+            android:layout_marginRight="@dimen/description_padding"/>
+        <TextView
+            android:layout_height="wrap_content"
+            style="@style/NavItem"
+            android:layout_width="wrap_content"
+            android:text="@string/profile"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nav_item_terms"
