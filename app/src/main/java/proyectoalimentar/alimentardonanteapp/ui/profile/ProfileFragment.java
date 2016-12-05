@@ -21,6 +21,7 @@ import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 import proyectoalimentar.alimentardonanteapp.repository.UserRepository;
+import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 
 
@@ -91,7 +92,9 @@ public class ProfileFragment extends Fragment{
             @Override
             public void onSuccess(Void value) {
                 progressBar.setVisibility(View.GONE);
-                getActivity().onBackPressed();
+                DrawerActivity drawerActivity = (DrawerActivity) getActivity();
+                drawerActivity.fetchDonatorInformation();
+                drawerActivity.onBackPressed();
             }
 
             @Override

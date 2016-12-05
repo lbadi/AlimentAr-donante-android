@@ -117,7 +117,6 @@ public class DrawerActivity extends AppCompatActivity {
                 setOnDonationCreated(()-> onSuccessfullyCreateDonation());
     }
 
-
     public void openDrawerItem(DrawerItem drawerItem) {
         selectedItem = drawerItem;
         hideDrawer();
