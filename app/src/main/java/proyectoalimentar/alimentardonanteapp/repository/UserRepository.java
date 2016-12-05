@@ -1,16 +1,24 @@
 package proyectoalimentar.alimentardonanteapp.repository;
 
+import android.graphics.Bitmap;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.model.AuthenticatedUser;
 import proyectoalimentar.alimentardonanteapp.model.Avatar;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.network.UserService;
 import proyectoalimentar.alimentardonanteapp.network.NotificationService;
+import proyectoalimentar.alimentardonanteapp.utils.ImageHelper;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 import retrofit2.Call;
@@ -163,5 +171,23 @@ public class UserRepository {
 
     private boolean isTokenPresent(){
         return StorageUtils.getBooleanFromSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, false);
+    }
+
+    public void uploadPhoto(Bitmap bitmap, RepoCallBack<Boolean> repoCallBack){
+        Donator donator = userStorage.getCachedDonator(); //TODO donator can be null in a rare case
+        byte[] image = ImageHelper.compress(bitmap, Bitmap.CompressFormat.PNG);
+        RequestBody photoBody = RequestBody.create(MediaType.parse("png"),image);
+        Call call = userService.updateAvatar(donator.getId(), donator.getId(), photoBody);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                repoCallBack.onSuccess(response.isSuccessful());
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                repoCallBack.onError(t.getMessage());
+            }
+        });
     }
 }

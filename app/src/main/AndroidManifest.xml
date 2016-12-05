@@ -4,8 +4,10 @@
 
     <!-- Google places permission -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--Read image from device-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <!--GSM-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />

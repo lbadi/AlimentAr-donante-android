@@ -33,6 +33,7 @@
         </android.support.v7.widget.Toolbar>
         <ImageView
             android:layout_width="60dp"
+            android:id="@+id/profile_image"
             android:background="@color/colorPrimary"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/activity_horizontal_margin"
