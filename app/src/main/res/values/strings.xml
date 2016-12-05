@@ -82,6 +82,7 @@
     <string name="notifiaction_activated_title">Donación activada</string>
     <string name="notifiaction_expired_title">Donación expirada</string>
     <string name="notifiaction_time_passed_title">Reabrir donación</string>
+    <string name="notifiaction_donation_deavtivated_title">Cambio estado de donación</string>
 
     <!--Profile-->
     <string name="profile">Perfil</string>

@@ -36,7 +36,12 @@ public class CustomNotificationBuilder {
                         ,message
                         ,context);
             case DONATION_EXPIRED:
-            break;
+                break;
+            case DONATION_DEACTIVATED:
+                return getDonationActivatedNotification(
+                        context.getString(notificationType.getTitleResource())
+                        ,message
+                        ,context);
 
         }
 
