@@ -1,5 +1,7 @@
 package proyectoalimentar.alimentardonanteapp;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class Configuration {
 
     public static final String ACCESS_TOKEN = "LOGGED_IN_ACCESS_TOKEN";
@@ -15,5 +17,9 @@ public class Configuration {
     public static final String TOKEN = "TOKEN";
     public static final String DONATION = "DONATION";
     public static final String NOTIFICATION_TYPE = "NOTIFICATION_TYPE";
+
+    //Pick Place
+    public static final LatLng NORTHEAST_BORDER = new LatLng(-34.542276,-58.361092);
+    public static final LatLng SOUTHWEST_BORDER = new LatLng(-34.666050,-58.520393);
 
 }

@@ -144,13 +144,14 @@ public class UserRepository {
         });
     }
 
-    public void changeProfile(String name, RepoCallBack<Void> repoCallBack){
+    public void changeProfile(String name,String address, RepoCallBack<Void> repoCallBack){
         final Donator donator = userStorage.getCachedDonator(); //TODO donator can be null in a rare case
-        userService.update(donator.getId(), name).enqueue(new Callback<Void>() {
+        userService.update(donator.getId(), name, address).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     donator.setName(name);
+                    donator.setAddress(address);
                     userStorage.setCachedDonator(donator);
                     repoCallBack.onSuccess(null);
                 }else{

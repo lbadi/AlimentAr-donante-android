@@ -1,6 +1,7 @@
 package proyectoalimentar.alimentardonanteapp.ui.profile;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,9 +15,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -28,6 +36,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.internal.Utils;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
+import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
@@ -39,6 +48,8 @@ import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 public class ProfileFragment extends Fragment{
 
     private static final int PICK_IMAGE = 1;
+    private static final int PLACE_PICKER_REQUEST = 2;
+
 
     @Inject
     LayoutInflater layoutInflater;
@@ -55,6 +66,8 @@ public class ProfileFragment extends Fragment{
     ProgressBar progressBar;
     @BindView(R.id.profile_image)
     ImageView profileImage;
+    @BindView(R.id.edit_address)
+    TextView address;
 
     Donator donator;
     boolean imageChange = false;
@@ -76,6 +89,7 @@ public class ProfileFragment extends Fragment{
             @Override
             public void onSuccess(Donator donator) {
                 name.setText(donator.getName());
+                address.setText(donator.getAddress());
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -104,7 +118,7 @@ public class ProfileFragment extends Fragment{
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
-        userRepository.changeProfile(name.getText().toString(), new RepoCallBack<Void>() {
+        userRepository.changeProfile(name.getText().toString(),address.getText().toString(), new RepoCallBack<Void>() {
             @Override
             public void onSuccess(Void value) {
                 if(!imageChange){
@@ -175,6 +189,11 @@ public class ProfileFragment extends Fragment{
                     }
                 }
             }
+        }else if (requestCode == PLACE_PICKER_REQUEST){
+            if (resultCode == Activity.RESULT_OK) {
+                Place pickedPlace = PlacePicker.getPlace(getActivity(), data);
+                address.setText(pickedPlace.getAddress());
+            }
         }
     }
 
@@ -188,5 +207,25 @@ public class ProfileFragment extends Fragment{
             name.setError(getResources().getString(R.string.empty_field));
         }
         return valid;
+    }
+
+    @OnClick(R.id.address_layout)
+    public void pickPlace(){
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        builder.setLatLngBounds(new LatLngBounds(Configuration.SOUTHWEST_BORDER, Configuration.NORTHEAST_BORDER));
+        try {
+            startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+            int error = googleApiAvailability.isGooglePlayServicesAvailable(this.getContext());
+            if(error != ConnectionResult.SUCCESS){
+                // ask user to update google play services.
+                Dialog updateDialog = googleApiAvailability.getErrorDialog(this.getActivity(),error,0);
+                updateDialog.show();
+            }
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
     }
 }

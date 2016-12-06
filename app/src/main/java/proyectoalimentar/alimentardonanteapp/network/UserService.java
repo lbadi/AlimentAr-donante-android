@@ -35,7 +35,7 @@ public interface UserService {
 
     @PUT("donators/{id}")
     @FormUrlEncoded
-    Call<Void> update(@Path("id") Integer id,@Field("name") String name);
+    Call<Void> update(@Path("id") Integer id,@Field("name") String name,@Field("address") String address);
 
     @Multipart
     @PUT("donators/{id}")

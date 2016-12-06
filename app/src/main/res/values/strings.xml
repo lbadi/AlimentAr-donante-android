@@ -87,6 +87,7 @@
     <!--Profile-->
     <string name="profile">Perfil</string>
     <string name="name_explanation">Nombre con el cual usted aparecera para los voluntarios</string>
+    <string name="address_explanation">Su dirección donde usted dara la comida</string>
     <string name="error_fetching_donator">Error al obtener los datos del usuario</string>
     <string name="error_updating_donator">Error al actualizar la información</string>
 

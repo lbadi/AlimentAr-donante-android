@@ -28,6 +28,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
+import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.R;
 
 
@@ -35,8 +36,6 @@ import proyectoalimentar.alimentardonanteapp.R;
 public class AditionalDataSignUpFragment extends Fragment{
 
     private static final int PLACE_PICKER_REQUEST = 1;
-    public static final LatLng NORTHEAST_BORDER = new LatLng(-34.542276,-58.361092);
-    public static final LatLng SOUTHWEST_BORDER = new LatLng(-34.666050,-58.520393);
 
     Place pickedPlace;
     OnRegisterFinishAttemptListener listener;
@@ -94,7 +93,7 @@ public class AditionalDataSignUpFragment extends Fragment{
 
     private void pickPlace(){
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        builder.setLatLngBounds(new LatLngBounds(SOUTHWEST_BORDER, NORTHEAST_BORDER));
+        builder.setLatLngBounds(new LatLngBounds(Configuration.SOUTHWEST_BORDER, Configuration.NORTHEAST_BORDER));
         try {
             startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
         } catch (GooglePlayServicesRepairableException e) {
