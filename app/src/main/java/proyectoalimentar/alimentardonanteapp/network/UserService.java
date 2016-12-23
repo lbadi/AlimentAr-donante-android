@@ -40,7 +40,6 @@ public interface UserService {
     @Multipart
     @PUT("donators/{id}")
     Call<Void> updateAvatar(@Path("id") int userId,
-                            @Part("user[id]") int id,
                             @Part("user[avatar]; filename=avatar.jpeg ") RequestBody photo);
 
 }

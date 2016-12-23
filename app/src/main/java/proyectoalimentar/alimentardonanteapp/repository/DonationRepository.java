@@ -60,8 +60,8 @@ public class DonationRepository {
         });
     }
 
-    public void onGoingDonation(Donation donation, RepoCallBack<Boolean> repoCallBack){
-        donationService.onGoing(donation.getId()).enqueue(new Callback<Void>() {
+    public void onGoingDonation(Integer donationId, RepoCallBack<Boolean> repoCallBack){
+        donationService.onGoing(donationId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 repoCallBack.onSuccess(response.isSuccessful());
@@ -74,8 +74,8 @@ public class DonationRepository {
         });
     }
 
-    public void openDonation(Donation donation, RepoCallBack<Boolean> repoCallBack){
-        donationService.open(donation.getId()).enqueue(new Callback<Void>() {
+    public void openDonation(Integer donationId, RepoCallBack<Boolean> repoCallBack){
+        donationService.open(donationId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 repoCallBack.onSuccess(response.isSuccessful());

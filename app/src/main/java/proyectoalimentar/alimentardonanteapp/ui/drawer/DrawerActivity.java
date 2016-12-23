@@ -245,11 +245,11 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     private void reactToActivationTimePassed(Intent intent){
-        Donation donation = (Donation) intent.getSerializableExtra(Configuration.DONATION);
-        if(donation==null){
+        String donationId = intent.getStringExtra(Configuration.DONATION);
+        if(donationId ==null || donationId.isEmpty()){
             return;
         }
-        activatedQuestionView.setDonation(donation);
+        activatedQuestionView.setDonationId(donationId);
         activatedQuestionView.setOnResponseCallback(confirmActivation -> {
 
         });
@@ -259,6 +259,13 @@ public class DrawerActivity extends AppCompatActivity {
 
     private NotificationType getNotificationType(Intent intent){
         return (NotificationType) intent.getSerializableExtra(Configuration.NOTIFICATION_TYPE);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent)
+    {
+        super.onNewIntent(intent);
+        setIntent(intent);
     }
 
 }

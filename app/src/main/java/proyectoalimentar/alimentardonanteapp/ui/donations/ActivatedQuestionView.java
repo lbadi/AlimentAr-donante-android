@@ -24,7 +24,7 @@ import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 
 public class ActivatedQuestionView extends FrameLayout {
 
-    Donation donation;
+    Integer donationId;
 
     @BindView(R.id.question_text)
     TextView questionTextView;
@@ -66,15 +66,15 @@ public class ActivatedQuestionView extends FrameLayout {
 
     private void fillQuestionText(){
         String question = getResources().getString(R.string.activated_question);
-        question = String.format(question,donation);
+//        question = String.format(question,donation);
         questionTextView.setText(question);
     }
 
     @OnClick(R.id.yes)
     public void confirmActivation(){
-        if(donation != null) {
+        if(donationId != null) {
             progressBar.setVisibility(VISIBLE);
-            donationRepository.onGoingDonation(donation, new RepoCallBack<Boolean>() {
+            donationRepository.onGoingDonation(donationId, new RepoCallBack<Boolean>() {
                 @Override
                 public void onSuccess(Boolean answered) {
                     if (answered) {
@@ -98,9 +98,9 @@ public class ActivatedQuestionView extends FrameLayout {
 
     @OnClick(R.id.no)
     public void DeniedActivation(){
-        if(donation != null) {
+        if(donationId != null) {
             progressBar.setVisibility(VISIBLE);
-            donationRepository.openDonation(donation, new RepoCallBack<Boolean>() {
+            donationRepository.openDonation(donationId, new RepoCallBack<Boolean>() {
                 @Override
                 public void onSuccess(Boolean answered) {
                     progressBar.setVisibility(GONE);
@@ -125,8 +125,12 @@ public class ActivatedQuestionView extends FrameLayout {
         this.setVisibility(FrameLayout.GONE);
     }
 
-    public void setDonation(Donation donation) {
-        this.donation = donation;
+    public void setDonationId(String donationId) {
+        try {
+            this.donationId = Integer.valueOf(donationId);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
         fillQuestionText();
     }
 
