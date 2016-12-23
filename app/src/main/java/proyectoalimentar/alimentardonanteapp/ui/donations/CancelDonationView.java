@@ -5,10 +5,12 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import proyectoalimentar.alimentardonanteapp.di.component.DaggerAppComponent;
@@ -30,6 +32,9 @@ public class CancelDonationView extends FrameLayout{
 
     @Inject
     DonationRepository donationRepository;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     OnDonationCancelledCallBack onDonationCancelledCallBack;
 
@@ -63,11 +68,13 @@ public class CancelDonationView extends FrameLayout{
 
     @OnClick(R.id.cancel_donation)
     public void cancelDonation(){
+        progressBar.setVisibility(VISIBLE);
         if(donation != null) {
             donationRepository.cancelDonation(donation, new RepoCallBack<Boolean>() {
                 @Override
                 public void onSuccess(Boolean canceled) {
                     if (canceled) {
+                        progressBar.setVisibility(GONE);
                         CancelDonationView.this.setVisibility(GONE);
                         if (onDonationCancelledCallBack != null) {
                             onDonationCancelledCallBack.onDonationCancelled(donation);
@@ -79,6 +86,7 @@ public class CancelDonationView extends FrameLayout{
 
                 @Override
                 public void onError(String error) {
+                    progressBar.setVisibility(GONE);
                     CancelDonationView.this.setVisibility(GONE);
                     Toast.makeText(getContext(), R.string.cancel_error, Toast.LENGTH_SHORT);
                 }
