@@ -19,10 +19,10 @@ import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 public class CustomNotificationBuilder {
 
     public static Notification build(NotificationType notificationType, String message, Context context){
-        return build(notificationType,message,context,null);
+        return build(notificationType,message,context,null,null);
     }
 
-    public static Notification build(NotificationType notificationType, String message, Context context, String donationId){
+    public static Notification build(NotificationType notificationType, String message, Context context, String donationId, String userName){
         switch (notificationType){
             case ACTIVATION_TIME_PASSED:
                 return getActivationTimePassedNotification(context.getString(notificationType.getTitleResource()),

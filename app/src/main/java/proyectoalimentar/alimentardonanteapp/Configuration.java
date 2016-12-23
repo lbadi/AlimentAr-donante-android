@@ -15,8 +15,9 @@ public class Configuration {
     public static final String REGISTRATION_COMPLETE = "REGISTRATION_COMPLETE";
     public static final String LAST_DONATIONS = "LAST_DONATIONS";
     public static final String TOKEN = "TOKEN";
-    public static final String DONATION = "proyectoalimentar.alimentardonanteapp.model.DONATION";
-    public static final String NOTIFICATION_TYPE = "proyectoalimentar.alimentardonanteapp.model.NOTIFICATION_TYPE";
+    public static final String DONATION = "DONATION";
+    public static final String VOLUNTEER_NAME = "VOLUNTEER_NAME";
+    public static final String NOTIFICATION_TYPE = "NOTIFICATION_TYPE";
 
     //Pick Place
     public static final LatLng NORTHEAST_BORDER = new LatLng(-34.542276,-58.361092);

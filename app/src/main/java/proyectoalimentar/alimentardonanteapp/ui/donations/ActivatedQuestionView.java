@@ -25,6 +25,7 @@ import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 public class ActivatedQuestionView extends FrameLayout {
 
     Integer donationId;
+    String userName;
 
     @BindView(R.id.question_text)
     TextView questionTextView;
@@ -66,7 +67,7 @@ public class ActivatedQuestionView extends FrameLayout {
 
     private void fillQuestionText(){
         String question = getResources().getString(R.string.activated_question);
-//        question = String.format(question,donation);
+        question = String.format(question,userName);
         questionTextView.setText(question);
     }
 
@@ -125,9 +126,10 @@ public class ActivatedQuestionView extends FrameLayout {
         this.setVisibility(FrameLayout.GONE);
     }
 
-    public void setDonationId(String donationId) {
+    public void setInformation(String donationId, String userName) {
         try {
             this.donationId = Integer.valueOf(donationId);
+            this.userName = userName;
         }catch (NumberFormatException e){
             throw new IllegalArgumentException();
         }

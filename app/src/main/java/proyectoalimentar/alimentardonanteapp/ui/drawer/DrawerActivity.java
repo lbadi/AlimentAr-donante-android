@@ -20,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.Configuration;
-import proyectoalimentar.alimentardonanteapp.model.Donation;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.model.NotificationType;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
@@ -246,10 +245,12 @@ public class DrawerActivity extends AppCompatActivity {
 
     private void reactToActivationTimePassed(Intent intent){
         String donationId = intent.getStringExtra(Configuration.DONATION);
+        String userName = intent.getStringExtra(Configuration.VOLUNTEER_NAME);
+
         if(donationId ==null || donationId.isEmpty()){
             return;
         }
-        activatedQuestionView.setDonationId(donationId);
+        activatedQuestionView.setInformation(donationId,userName);
         activatedQuestionView.setOnResponseCallback(confirmActivation -> {
 
         });

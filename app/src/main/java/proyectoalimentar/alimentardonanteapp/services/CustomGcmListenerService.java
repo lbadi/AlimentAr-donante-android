@@ -29,9 +29,11 @@ public class CustomGcmListenerService extends GcmListenerService{
         String message = data.getString("message_body");
         String notificationType = data.getString("n_type");
         String donationId = data.getString("donation_id");
+        String userName = data.getString("user_name");
+
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
-        sendNotification(message,NotificationType.fromString(notificationType), donationId);
+        sendNotification(message,NotificationType.fromString(notificationType), donationId, userName);
     }
 
     /**
@@ -39,11 +41,11 @@ public class CustomGcmListenerService extends GcmListenerService{
      *
      * @param message GCM message received.
      */
-    private void sendNotification(String message, NotificationType notificationType, String donationId) {
+    private void sendNotification(String message, NotificationType notificationType, String donationId, String userName) {
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */,CustomNotificationBuilder.build(notificationType,message,this, donationId));
+        notificationManager.notify(0 /* ID of notification */,CustomNotificationBuilder.build(notificationType,message,this, donationId,userName));
     }
 }

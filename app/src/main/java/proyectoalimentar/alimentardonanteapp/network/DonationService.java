@@ -28,7 +28,7 @@ public interface DonationService {
                           @Field("pickup_time_from") String pickUpTimeFrom,
                           @Field("pickup_time_to") String pickUpTimeTo);
 
-    @POST("donations/{id}/finish")
+    @POST("donations/{id}/cancel")
     Call<Void> cancel(@Path("id") Integer id);
 
     @POST("donations/{id}/ongoing")
