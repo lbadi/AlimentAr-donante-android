@@ -67,8 +67,6 @@ public class DrawerActivity extends AppCompatActivity {
     private Map<DrawerItem, DrawerItemContainer> drawerItems;
     private DrawerItem selectedItem;
 
-    private boolean isReceiverRegistered;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +79,6 @@ public class DrawerActivity extends AppCompatActivity {
     private void init(@Nullable Bundle savedInstanceState){
         //Register GCM Token
         registerToken();
-        //Register Donations watcher
-//        registerDonationWatcher(this);
         //Put user information in nav-bar Header
         fetchDonatorInformation();
         drawerItems = new HashMap<>();
@@ -171,14 +167,6 @@ public class DrawerActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-//    private void registerReceiver(){
-//        if(!isReceiverRegistered) {
-//            LocalBroadcastManager.getInstance(this).registerReceiver(RegistrationIntentService,
-//                    new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
-//            isReceiverRegistered = true;
-//        }
-//    }
-
     private void registerToken(){
         if(!StorageUtils.getBooleanFromSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, false)){
             //Only register token if is not registered yet.
@@ -187,20 +175,6 @@ public class DrawerActivity extends AppCompatActivity {
         }
     }
 
-    private void registerDonationWatcher(Context context) {
-        Intent i = new Intent(context, DonationWatcherService.class);
-        PendingIntent sender = PendingIntent.getService(context,REQUEST_CODE,i,0);
-
-        // We want the alarm to go off 3 seconds from now.
-        long firstTime = SystemClock.elapsedRealtime();
-        firstTime += 3 * 1000;//start 3 seconds after first register.
-
-        // Schedule the alarm!
-        AlarmManager am = (AlarmManager) context
-                .getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime,
-                6000, sender);
-    }
 
     public void fetchDonatorInformation(){
         userRepository.getMyInformation(new RepoCallBack<Donator>() {
@@ -252,7 +226,7 @@ public class DrawerActivity extends AppCompatActivity {
         }
         activatedQuestionView.setInformation(donationId,userName);
         activatedQuestionView.setOnResponseCallback(confirmActivation -> {
-
+            //Here we have to call api to confirm that the user retrieve the donation.
         });
         activatedQuestionView.setVisibility(View.VISIBLE);
 

@@ -75,11 +75,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/img_donation_time" />
 
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/all_day_switch"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -89,105 +89,107 @@
                         android:paddingRight="@dimen/description_padding"
                         android:text="@string/all_day" />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
-
-                    <Switch
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/all_day_switch"/>
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:id="@+id/from_layout"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:id="@+id/datetime_layout">
 
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/pickup_time_from_text"
+                        android:id="@+id/from_time_layout"
                         android:padding="@dimen/description_padding"
-                        android:text="@string/pickup_time_from_text"
-                        />
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
+                        android:orientation="vertical">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pickup_time_from_text"
+                            android:background="@drawable/border_bottom"
+                            android:text="@string/pickup_time_from_text"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/from_layout"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/pickup_date_from"
+                                style="@style/TextAppearance.AppCompat.Medium"
+                                android:hint="Wed, Jan 4, 2017" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/pickup_time_from"
+                                style="@style/TextAppearance.AppCompat.Medium"
+                                android:hint="11:00 AM" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/to_time_layout"
                         android:padding="@dimen/description_padding"
-                        android:id="@+id/pickup_time_from"
-                        android:hint="@string/pickup_time" />
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pickup_time_to_text"
+                            android:background="@drawable/border_bottom"
+                            android:text="@string/pickup_time_to_text" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/to_layout"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/pickup_date_to"
+                                style="@style/TextAppearance.AppCompat.Medium"
+                                android:hint="Wed, Jan 4, 2017" />
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/pickup_time_to"
+                                style="@style/TextAppearance.AppCompat.Medium"
+                                android:hint="11:00 AM"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/to_layout"
-                    android:layout_marginLeft="32dp"
-
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pickup_time_to_text"
-                        android:padding="@dimen/description_padding"
-                        android:text="@string/pickup_time_to_text" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pickup_time_to"
-                        android:padding="@dimen/description_padding"
-                        android:hint="@string/pickup_time" />
-
-                </LinearLayout>
 
 
-                <!--<LinearLayout-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:orientation="vertical"-->
-                    <!--android:gravity="right">-->
-
-
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:id="@+id/pickup_date_to"-->
-                        <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
-                        <!--style="?android:editTextStyle"-->
-                        <!--android:hint="@string/pickup_date" />-->
-
-                <!--</LinearLayout>-->
             </LinearLayout>
 
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--style="?android:editTextStyle"-->
-                <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
-                <!--android:id="@+id/pickup_date_from"-->
-                <!--android:hint="@string/pickup_date" />-->
 
         </LinearLayout>
         <ProgressBar

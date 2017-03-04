@@ -12,6 +12,7 @@ import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,21 +27,31 @@ import android.widget.Toast;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.w3c.dom.Text;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 
 public class NewDonationFragment extends Fragment{
 
+    //How many hours it will be added to pickup to datetime default.
+    private static final int PLUS_HOURS_DEFAULT = 2;
+
     @BindView(R.id.description_text)
     EditText descriptionText;
-//    @BindView(R.id.pickup_date_from)
-//    TextView pickupDateFrom;
+    /** Time and date selectors*/
+    @BindView(R.id.pickup_date_from)
+    TextView pickupDateFrom;
     @BindView(R.id.pickup_time_from)
     TextView pickupTimeFrom;
-//    @BindView(R.id.pickup_date_to)
-//    TextView pickupDateTo;
+    @BindView(R.id.pickup_date_to)
+    TextView pickupDateTo;
     @BindView(R.id.pickup_time_to)
     TextView pickupTimeTo;
+    /** ---------------- */
+    @BindView(R.id.datetime_layout)
+    LinearLayout dateTimeLayout;
     @BindView(R.id.confirm_donation)
     ImageView createDonationButton;
     @BindView(R.id.toolbar)
@@ -61,8 +72,8 @@ public class NewDonationFragment extends Fragment{
 
     OnDonationCreatedListener onDonationCreatedListener;
 
-    DateTimeFormatter formatDate = DateTimeFormat.forPattern("dd-MM-YYYY");
-    DateTimeFormatter formatTime = DateTimeFormat.forPattern("HH-mm");
+    DateTimeFormatter formatDate = DateTimeFormat.forPattern("EEE, MMM dd,YYYY").withLocale(Locale.getDefault());
+    DateTimeFormatter formatTime = DateTimeFormat.forPattern("hh:mm a").withLocale(Locale.getDefault());
 
     DateTime dateTimeFrom;
     DateTime dateTimeTo;
@@ -86,13 +97,25 @@ public class NewDonationFragment extends Fragment{
 
     public void init(){
         createDonationButton.setOnClickListener(v -> attemptCreateDonation());
-//        pickupDateFrom.setOnClickListener( v -> showDatePickerDialog(pickupDateFrom));
-//        setUpCustomListenersDate(pickupDateFrom);
-//        setUpCustomListenersDate(pickupDateTo);
+        setSwitchChangeListener();
+        setDateAndTimeComponents();
+        setupDrawer();
+    }
+
+    private void setDateAndTimeComponents(){
+        //Set defaults values.
+        DateTime initialFromDateTime = new DateTime();
+        pickupDateFrom.setText(formatDate.print(initialFromDateTime));
+        pickupTimeFrom.setText(formatTime.print(initialFromDateTime));
+        DateTime initialToDateTime = new DateTime().plusHours(PLUS_HOURS_DEFAULT);
+        pickupDateTo.setText(formatDate.print(initialToDateTime));
+        pickupTimeTo.setText(formatTime.print(initialToDateTime));
+
+        //Init listeners
+        setUpCustomListenersDate(pickupDateFrom);
+        setUpCustomListenersDate(pickupDateTo);
         setUpCustomListenersTime(pickupTimeFrom);
         setUpCustomListenersTime(pickupTimeTo);
-        setSwitchChangeListener();
-        setupDrawer();
     }
 
     private void setSwitchChangeListener(){
@@ -109,7 +132,7 @@ public class NewDonationFragment extends Fragment{
         if(value) {
             pickupTimeFrom.setText(lastTimeSelectedFrom);
             pickupTimeTo.setText(lastTimeSelectedTo);
-            fromLayout.setVisibility(LinearLayout.VISIBLE);
+            dateTimeLayout.setVisibility(LinearLayout.VISIBLE);
             toLayout.setVisibility(LinearLayout.VISIBLE);
         }else{
             //Set time to start/end of the actual day and save the value to restore if nedeed
@@ -117,8 +140,7 @@ public class NewDonationFragment extends Fragment{
             lastTimeSelectedTo = pickupTimeTo.getText();
             pickupTimeFrom.setText(formatTime.print(new DateTime().withTimeAtStartOfDay()));
             pickupTimeTo.setText(formatTime.print(new DateTime().plusDays(1).withTimeAtStartOfDay().minusMinutes(1)));
-            fromLayout.setVisibility(LinearLayout.GONE);
-            toLayout.setVisibility(LinearLayout.GONE);
+            dateTimeLayout.setVisibility(LinearLayout.GONE);
         }
     }
 
@@ -140,20 +162,14 @@ public class NewDonationFragment extends Fragment{
         view.setOnClickListener(v -> showTimePickerDialog(view));
     }
 
+    /**
+     * Make api call to create a new donation. It will use the from and to fields to form
+     * the DateTimes needed.
+     */
     public void attemptCreateDonation(){
 
-        if(!validateInput()){
-            return;
-        }
-        //Form dateTime from textfields
-//        dateTimeFrom = formatDate.parseDateTime(pickupDateFrom.getText().toString())
-//                .withTime(formatTime.parseLocalTime(pickupTimeFrom.getText().toString()));
-        dateTimeFrom = new DateTime()
-                .withTime(formatTime.parseLocalTime(pickupTimeFrom.getText().toString()));
-//        dateTimeTo = formatDate.parseDateTime(pickupDateTo.getText().toString())
-//                .withTime(formatTime.parseLocalTime(pickupTimeTo.getText().toString()));
-        dateTimeTo = new DateTime()
-                .withTime(formatTime.parseLocalTime(pickupTimeTo.getText().toString()));
+        dateTimeFrom = getDateTimeFrom();
+        dateTimeTo = getDateTimeTo();
         String description = descriptionText.getText().toString();
 
         progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -178,38 +194,34 @@ public class NewDonationFragment extends Fragment{
         });
     }
 
+    public DateTime getDateTimeFrom(){
+        return generateDateFromTextViews(pickupDateFrom, pickupTimeFrom);
+    }
+
+    public DateTime getDateTimeTo(){
+        return generateDateFromTextViews(pickupDateTo, pickupTimeTo);
+    }
+
+    public void setDateTimeFrom(DateTime dateTimeFrom){
+        pickupDateFrom.setText(formatDate.print(dateTimeFrom));
+        pickupTimeFrom.setText(formatTime.print(dateTimeFrom));
+    }
+
+    public void setDateTimeTo(DateTime dateTimeFrom){
+        pickupDateTo.setText(formatDate.print(dateTimeFrom));
+        pickupTimeTo.setText(formatTime.print(dateTimeFrom));
+    }
+
+    private DateTime generateDateFromTextViews(TextView dateTextView, TextView timeTextView){
+        return new DateTime()
+                .withDate(formatDate.parseLocalDate(dateTextView.getText().toString()))
+                .withTime(formatTime.parseLocalTime(timeTextView.getText().toString()));
+    }
+
     private void showCreateError(){
         Toast.makeText(getActivity(),R.string.error_create_donation,Toast.LENGTH_SHORT);
     }
 
-    private boolean validateInput(){
-
-        //Clean errors
-//        pickupDateFrom.setError(null);
-//        pickupDateTo.setError(null);
-        pickupTimeFrom.setError(null);
-        pickupTimeTo.setError(null);
-
-        boolean valid = true;
-
-        if(pickupTimeFrom.getText().toString().isEmpty()){
-            valid = false;
-            pickupTimeFrom.setError(getResources().getString(R.string.empty_field));
-        }
-//        if(pickupDateFrom.getText().toString().isEmpty()){
-//            valid = false;
-//            pickupDateFrom.setError(getResources().getString(R.string.empty_field));
-//        }
-        if(pickupTimeTo.getText().toString().isEmpty()){
-            valid = false;
-            pickupTimeTo.setError(getResources().getString(R.string.empty_field));
-        }
-//        if(pickupDateTo.getText().toString().isEmpty()){
-//            valid = false;
-//            pickupDateTo.setError(getResources().getString(R.string.empty_field));
-//        }
-        return valid;
-    }
 
     public boolean showDatePickerDialog(final TextView view){
         DialogFragment datePickerFragment = DatePickerFragment.newInstance((year, month, day) -> {
@@ -218,6 +230,7 @@ public class NewDonationFragment extends Fragment{
                     .withMonthOfYear(month+1) //DatePicker returns month beetween [0-11] and jodaTime use it from [1-12]
                     .withDayOfMonth(day);
             view.setText(formatDate.print(dateTime));
+            validateDates();
         });
         datePickerFragment.show(getActivity().getSupportFragmentManager(), view.toString() + "Date");
         return true;
@@ -229,8 +242,18 @@ public class NewDonationFragment extends Fragment{
                     .withHourOfDay(hour)
                     .withMinuteOfHour(minute);
             view.setText(formatTime.print(dateTime));
+            validateDates();
         });
         timePickerFragment.show(getActivity().getSupportFragmentManager(), view.toString() + "Time");
+    }
+
+    /**
+     * Validate dateTimeFrom < dateTimeTo if not set dateTimeTo = dateTimeFrom + DEFAULT HOURS
+     */
+    private void validateDates(){
+        if (getDateTimeFrom().isAfter(getDateTimeTo())){
+            setDateTimeTo(getDateTimeFrom().plusHours(PLUS_HOURS_DEFAULT));
+        }
     }
 
     private void setupDrawer() {

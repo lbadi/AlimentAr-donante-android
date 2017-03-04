@@ -49,6 +49,14 @@ public class CustomNotificationBuilder {
 
     }
 
+    /**
+     * Create simple notification to display a message. The notification will open the drawer
+     * activity.
+     * @param title
+     * @param message
+     * @param context
+     * @return
+     */
     private static Notification getSimpleMessageNotification(String title, String message, Context context){
         Intent intent = new Intent(context, DrawerActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -65,6 +73,15 @@ public class CustomNotificationBuilder {
                 .setContentIntent(pendingIntent).build();
     }
 
+    /**
+     * Create a notification that will have the donation id and the notification type activation
+     * time passed as extras.
+     * @param title
+     * @param message
+     * @param context
+     * @param donationId
+     * @return
+     */
     private static Notification getActivationTimePassedNotification(String title, String message,
                                                                     Context context, String donationId){
         Intent intent = new Intent(context, DrawerActivity.class);
@@ -72,7 +89,7 @@ public class CustomNotificationBuilder {
         intent.putExtra(Configuration.NOTIFICATION_TYPE,NotificationType.ACTIVATION_TIME_PASSED);
         intent.putExtra(Configuration.DONATION, donationId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

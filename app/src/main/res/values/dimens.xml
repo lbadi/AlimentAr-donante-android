@@ -12,5 +12,7 @@
     <dimen name="round_button_diameter">56dp</dimen>
     <dimen name="add_button_margin">16dp</dimen>
 
+    <dimen name="select_datetime_height">16dp</dimen>
+
 
 </resources>
