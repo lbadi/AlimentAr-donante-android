@@ -39,6 +39,7 @@
     <!--List of Status-->
     <string name="open">Abierta</string>
     <string name="active">Activa</string>
+    <string name="ongoing">En camino</string>
     <string name="finished">Terminada</string>
     <string name="cancelled">Cancelada</string>
 

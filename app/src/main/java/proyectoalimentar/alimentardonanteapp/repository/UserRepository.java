@@ -177,7 +177,7 @@ public class UserRepository {
     public void uploadPhoto(Bitmap bitmap, RepoCallBack<Boolean> repoCallBack){
         Donator donator = userStorage.getCachedDonator(); //TODO donator can be null in a rare case
         byte[] image = ImageHelper.compress(bitmap, Bitmap.CompressFormat.PNG);
-        RequestBody photoBody = RequestBody.create(MediaType.parse("png"),image);
+        RequestBody photoBody = RequestBody.create(MediaType.parse("image/png"),image);
         Call call = userService.updateAvatar(donator.getId(), photoBody);
         call.enqueue(new Callback() {
             @Override

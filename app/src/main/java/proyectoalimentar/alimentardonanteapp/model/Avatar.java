@@ -4,27 +4,27 @@ import android.graphics.Bitmap;
 
 public class Avatar {
 
-    Bitmap original;
-    Bitmap thumb;
+    private String original;
+    private String thumb;
 
-    public Avatar(Bitmap original, Bitmap thumb){
+    public Avatar(String original, String thumb){
         this.original = original;
         this.thumb = thumb;
     }
 
-    public Bitmap getOriginal() {
+    public String getOriginal() {
         return original;
     }
 
-    public Bitmap getThumb() {
+    public String getThumb() {
         return thumb;
     }
 
-    public void setOriginal(Bitmap original) {
+    public void setOriginal(String original) {
         this.original = original;
     }
 
-    public void setThumb(Bitmap thumb) {
+    public void setThumb(String thumb) {
         this.thumb = thumb;
     }
 }

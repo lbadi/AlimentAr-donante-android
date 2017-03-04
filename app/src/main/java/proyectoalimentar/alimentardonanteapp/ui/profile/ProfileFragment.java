@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.common.util.UriUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -28,7 +31,9 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
@@ -66,7 +71,7 @@ public class ProfileFragment extends Fragment{
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.profile_image)
-    ImageView profileImage;
+    SimpleDraweeView profileImage;
     @BindView(R.id.edit_address)
     TextView address;
 
@@ -91,6 +96,9 @@ public class ProfileFragment extends Fragment{
             public void onSuccess(Donator donator) {
                 name.setText(donator.getName());
                 address.setText(donator.getAddress());
+                if(donator.getAvatar() != null){
+                    profileImage.setImageURI(donator.getAvatar().getThumb());
+                }
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -99,7 +107,7 @@ public class ProfileFragment extends Fragment{
                 Toast.makeText(getContext(),R.string.error_fetching_donator,Toast.LENGTH_SHORT);
                 progressBar.setVisibility(View.GONE);
             }
-        });
+        }, false);
     }
 
     private void setupDrawer() {

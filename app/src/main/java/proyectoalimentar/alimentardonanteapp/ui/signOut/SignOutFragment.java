@@ -56,7 +56,7 @@ public class SignOutFragment extends Fragment{
                     if (getActivity() == null || getActivity().isFinishing()) {
                         return;
                     }
-                    Toast.makeText(getContext(),R.string.error_incorrect_password, Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(),R.string.error_signout, Toast.LENGTH_SHORT);
                 }else {
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {

@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import com.annimon.stream.Stream;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +55,8 @@ public class DrawerActivity extends AppCompatActivity {
     TextView name;
     @BindView(R.id.address)
     TextView address;
+    @BindView(R.id.profile_image)
+    SimpleDraweeView profileImage;
     @BindView(R.id.activated_question_view)
     ActivatedQuestionView activatedQuestionView;
 
@@ -195,6 +198,9 @@ public class DrawerActivity extends AppCompatActivity {
         }
         if(donator.getAddress() != null && !donator.getAddress().isEmpty()) {
             address.setText(donator.getAddress());
+        }
+        if(donator.getAvatar() != null && donator.getAvatar().getThumb() != null){
+            profileImage.setImageURI(donator.getAvatar().getThumb());
         }
     }
 

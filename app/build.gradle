@@ -102,6 +102,9 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     // For time and date management
     compile 'net.danlew:android.joda:2.8.1'
+    // For images
+    compile 'com.facebook.fresco:fresco:1.1.0'
+
     testCompile 'junit:junit:4.12'
 }
 

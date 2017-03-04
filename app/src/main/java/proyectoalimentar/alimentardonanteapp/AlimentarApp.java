@@ -3,6 +3,8 @@ package proyectoalimentar.alimentardonanteapp;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import proyectoalimentar.alimentardonanteapp.di.component.DaggerAppComponent;
@@ -33,6 +35,7 @@ public class AlimentarApp extends Application {
         context = this;
         JodaTimeAndroid.init(this);
         setupCalligraphy();
+        Fresco.initialize(this);
     }
 
     public static Context getContext() {

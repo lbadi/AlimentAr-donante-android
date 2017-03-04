@@ -7,7 +7,9 @@ public class Configuration {
     public static final String ACCESS_TOKEN = "LOGGED_IN_ACCESS_TOKEN";
     public static final String EMAIL = "EMAIL";
     public static final String USER_INFORMATION = "USER_INFORMATION";
-    public static final String ENDPOINT = "http://alimentar-stage.herokuapp.com/api/v1/";
+//    public static final String ENDPOINT = "http://alimentar-stage.herokuapp.com/api/v1/";
+    public static final String ENDPOINT = "http://1a84f3c6.ngrok.io/api/v1/";
+
 
 
     //    Notifications configuration

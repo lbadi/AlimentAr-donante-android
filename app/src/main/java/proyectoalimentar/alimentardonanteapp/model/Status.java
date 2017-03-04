@@ -7,6 +7,7 @@ import proyectoalimentar.alimentardonanteapp.R;
 public enum Status {
     OPEN(AlimentarApp.getContext().getString(R.string.open), "open"),
     ACTIVE(AlimentarApp.getContext().getString(R.string.active), "active"),
+    ONGOING(AlimentarApp.getContext().getString(R.string.ongoing), "ongoing"),
     FINISHED(AlimentarApp.getContext().getString(R.string.finished), "finished"),
     CANCELLED(AlimentarApp.getContext().getString(R.string.cancelled), "cancelled"),
     UNKOWN("Indefinida" , "unkown");

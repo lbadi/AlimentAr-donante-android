@@ -1,5 +1,7 @@
 package proyectoalimentar.alimentardonanteapp.model;
 
+import android.graphics.Bitmap;
+
 public class Donator {
 
     private int id;
