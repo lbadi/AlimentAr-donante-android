@@ -22,13 +22,15 @@ public class CustomNotificationBuilder {
         return build(notificationType,message,context,null,null);
     }
 
-    public static Notification build(NotificationType notificationType, String message, Context context, String donationId, String userName){
+    public static Notification build(NotificationType notificationType, String message, Context context
+            , String donationId, String volunteerName){
         switch (notificationType){
             case ACTIVATION_TIME_PASSED:
                 return getActivationTimePassedNotification(context.getString(notificationType.getTitleResource()),
                         message,
                         context,
-                        donationId);
+                        donationId,
+                        volunteerName);
             case DONATION_ACTIVATED:
                 return getSimpleMessageNotification(
                         context.getString(notificationType.getTitleResource())
@@ -83,11 +85,14 @@ public class CustomNotificationBuilder {
      * @return
      */
     private static Notification getActivationTimePassedNotification(String title, String message,
-                                                                    Context context, String donationId){
+                                                                    Context context, String donationId
+                                                                    , String volunteerName){
         Intent intent = new Intent(context, DrawerActivity.class);
         //Put extra information
         intent.putExtra(Configuration.NOTIFICATION_TYPE,NotificationType.ACTIVATION_TIME_PASSED);
         intent.putExtra(Configuration.DONATION, donationId);
+        intent.putExtra(Configuration.VOLUNTEER_NAME, volunteerName);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);

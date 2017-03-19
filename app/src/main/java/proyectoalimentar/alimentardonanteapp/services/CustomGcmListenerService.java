@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import java.util.Date;
+
 import proyectoalimentar.alimentardonanteapp.model.NotificationType;
 import proyectoalimentar.alimentardonanteapp.utils.CustomNotificationBuilder;
 
@@ -28,7 +30,7 @@ public class CustomGcmListenerService extends GcmListenerService{
         Log.d(TAG, "Keyset: " + data.keySet());
         String message = data.getString("message_body");
         String notificationType = data.getString("n_type");
-        String donationId = data.getString("donation_id");
+        String donationId = data.getString("user_id");
         String userName = data.getString("user_name");
 
         Log.d(TAG, "From: " + from);
@@ -45,7 +47,10 @@ public class CustomGcmListenerService extends GcmListenerService{
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0 /* ID of notification */,CustomNotificationBuilder.build(notificationType,message,this, donationId,userName));
+        int notificationId = 0;
+        if(notificationType.equals(NotificationType.ACTIVATION_TIME_PASSED)){
+            notificationId = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
+        }
+        notificationManager.notify(notificationId /* ID of notification */,CustomNotificationBuilder.build(notificationType,message,this, donationId,userName));
     }
 }

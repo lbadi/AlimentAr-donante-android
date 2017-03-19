@@ -48,35 +48,6 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Donation donation = donations.get(position);
         holder.populateWithDonation(donation,cancelDonationView);
-
-//        if((position % 2) == 1){
-//            holder.rowView.setBackgroundColor(ContextCompat.getColor(AlimentarApp.getContext(), R.color.colorPrimary));
-//            holder.assignToView.setTextColor(ContextCompat.getColor(AlimentarApp.getContext(), R.color.colorAccent));
-//        }else{
-//            holder.rowView.setBackgroundColor(ContextCompat.getColor(AlimentarApp.getContext(), R.color.colorAccent));
-//            holder.assignToView.setTextColor(ContextCompat.getColor(AlimentarApp.getContext(), R.color.colorPrimary));
-//        }
-
-//        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                if (null != mListener) {
-//                   return mListener.onDonationLongClick(holder.donation);
-//                }
-//                return false;
-//            }
-//        });
-//
-//        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
-//            // Called when the user long-clicks on someView
-//            public boolean onLongClick(View view) {
-//                // Start the CAB using the ActionMode.Callback defined above
-//                boolean value = mListener.onDonationLongClick(holder.donation);
-//                holder.mView.setSelected(true);
-//                view.setSelected(true);
-//                return value;
-//            }
-//        });
     }
 
     @Override

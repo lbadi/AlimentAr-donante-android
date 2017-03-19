@@ -34,7 +34,7 @@ public interface DonationService {
     @POST("donations/{id}/ongoing")
     Call<Void> onGoing(@Path("id") Integer id);
 
-    @POST("donations/{id}/open")
+    @POST("donations/{id}/reopen")
     Call<Void> open(@Path("id") Integer id);
 
 
