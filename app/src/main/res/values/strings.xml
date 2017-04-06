@@ -70,6 +70,8 @@
     <string name="go_back">Volver</string>
     <string name="donation_cancelled">Donación cancelada</string>
     <string name="cancel_error">Hubo un error al cancelar la donación</string>
+    <string name="qualify_error">Hubo un error al calificar al voluntario</string>
+
 
     <!--Repost donation view-->
     <string name="repost_information">Termino el tiempo de publicación de la donación</string>

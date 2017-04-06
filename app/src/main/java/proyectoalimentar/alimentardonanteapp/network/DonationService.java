@@ -4,7 +4,9 @@ import java.util.List;
 
 import proyectoalimentar.alimentardonanteapp.model.Donation;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
+import proyectoalimentar.alimentardonanteapp.model.Qualification;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -36,6 +38,9 @@ public interface DonationService {
 
     @POST("donations/{id}/reopen")
     Call<Void> open(@Path("id") Integer id);
+
+    @POST("donations/{id}/qualify")
+    Call<Void> qualify(@Path("id") Integer id, @Body Qualification qualification);
 
 
 }

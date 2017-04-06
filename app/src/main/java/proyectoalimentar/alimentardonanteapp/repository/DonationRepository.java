@@ -11,6 +11,7 @@ import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.model.AuthenticatedUser;
 import proyectoalimentar.alimentardonanteapp.model.Donation;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
+import proyectoalimentar.alimentardonanteapp.model.Qualification;
 import proyectoalimentar.alimentardonanteapp.network.DonationService;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
@@ -74,6 +75,20 @@ public class DonationRepository {
         });
     }
 
+    public void qualifyDonation(Integer donationId, Qualification qualification, RepoCallBack<Boolean> repoCallBack){
+        donationService.qualify(donationId, qualification).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                repoCallBack.onSuccess(response.isSuccessful());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                repoCallBack.onError(t.getMessage());
+            }
+        });
+    }
+
     public void openDonation(Integer donationId, RepoCallBack<Boolean> repoCallBack){
         donationService.open(donationId).enqueue(new Callback<Void>() {
             @Override
@@ -87,6 +102,7 @@ public class DonationRepository {
             }
         });
     }
+
 
     public void activeDonations(RepoCallBack<List<Donation>> repoCallBack){
         donationService.listActive().enqueue(new Callback<List<Donation>>() {

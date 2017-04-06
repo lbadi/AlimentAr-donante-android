@@ -14,10 +14,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.di.component.DaggerAppComponent;
 import proyectoalimentar.alimentardonanteapp.di.module.AppModule;
 import proyectoalimentar.alimentardonanteapp.di.module.NetworkModule;
+import proyectoalimentar.alimentardonanteapp.model.Qualification;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 
@@ -71,9 +73,10 @@ public class QualifyVolunteerView extends FrameLayout{
 
     @OnClick(R.id.good)
     public void QualifyAsGood(){
+        Qualification qualification = new Qualification(Configuration.MAX_QUALIFICATION);
         if(donationId != null) {
             progressBar.setVisibility(VISIBLE);
-            donationRepository.onGoingDonation(donationId, new RepoCallBack<Boolean>() {
+            donationRepository.qualifyDonation(donationId,qualification, new RepoCallBack<Boolean>() {
                 @Override
                 public void onSuccess(Boolean answered) {
                     if (answered) {
@@ -97,9 +100,10 @@ public class QualifyVolunteerView extends FrameLayout{
 
     @OnClick(R.id.bad)
     public void QualifyAsBad(){
+        Qualification qualification = new Qualification(Configuration.MIN_QUALIFICATION);
         if(donationId != null) {
             progressBar.setVisibility(VISIBLE);
-            donationRepository.openDonation(donationId, new RepoCallBack<Boolean>() {
+            donationRepository.qualifyDonation(donationId, qualification, new RepoCallBack<Boolean>() {
                 @Override
                 public void onSuccess(Boolean answered) {
                     progressBar.setVisibility(GONE);

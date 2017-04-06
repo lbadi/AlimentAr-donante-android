@@ -1,6 +1,5 @@
 package proyectoalimentar.alimentardonanteapp.model;
 
-import android.graphics.Bitmap;
 
 public class Avatar {
 

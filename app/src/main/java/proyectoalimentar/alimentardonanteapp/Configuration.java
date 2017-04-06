@@ -23,4 +23,7 @@ public class Configuration {
     public static final LatLng NORTHEAST_BORDER = new LatLng(-34.542276,-58.361092);
     public static final LatLng SOUTHWEST_BORDER = new LatLng(-34.666050,-58.520393);
 
+    public static final int MAX_QUALIFICATION = 5;
+    public static final int MIN_QUALIFICATION = 1;
+
 }
