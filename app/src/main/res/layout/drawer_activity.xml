@@ -20,4 +20,10 @@
         android:visibility="gone"
         android:id="@+id/activated_question_view"/>
 
+    <proyectoalimentar.alimentardonanteapp.ui.donations.QualifyVolunteerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/qualify_volunteer_view"/>
+
 </android.support.v4.widget.DrawerLayout>

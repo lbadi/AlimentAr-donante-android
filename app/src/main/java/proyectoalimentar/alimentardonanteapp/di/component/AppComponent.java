@@ -12,6 +12,7 @@ import proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.CancelDonationView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.DonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
+import proyectoalimentar.alimentardonanteapp.ui.donations.QualifyVolunteerView;
 import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.login.LoginActivity;
 import proyectoalimentar.alimentardonanteapp.ui.profile.ProfileFragment;
@@ -54,6 +55,7 @@ public interface AppComponent {
 
     void inject (ProfileFragment profileFragment);
 
+    void inject (QualifyVolunteerView qualifyVolunteerView);
 
 }
 

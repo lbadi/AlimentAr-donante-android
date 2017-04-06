@@ -30,6 +30,7 @@ import proyectoalimentar.alimentardonanteapp.services.DonationWatcherService;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
+import proyectoalimentar.alimentardonanteapp.ui.donations.QualifyVolunteerView;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -59,6 +60,8 @@ public class DrawerActivity extends AppCompatActivity {
     SimpleDraweeView profileImage;
     @BindView(R.id.activated_question_view)
     ActivatedQuestionView activatedQuestionView;
+    @BindView(R.id.qualify_volunteer_view)
+    QualifyVolunteerView qualifyVolunteerView;
 
     @Inject
     UserStorage userStorage;
@@ -227,12 +230,17 @@ public class DrawerActivity extends AppCompatActivity {
         String donationId = intent.getStringExtra(Configuration.DONATION);
         String userName = intent.getStringExtra(Configuration.VOLUNTEER_NAME);
 
+        //This shouldn't happen except there was an error on the notification system.
         if(donationId ==null || donationId.isEmpty()){
             return;
         }
         activatedQuestionView.setInformation(donationId,userName);
         activatedQuestionView.setOnResponseCallback(confirmActivation -> {
-            //Here we have to call api to confirm that the user retrieve the donation.
+            //Here we show the qualify view.
+            if(confirmActivation) {
+                qualifyVolunteerView.setInformation(donationId,userName);
+                qualifyVolunteerView.setVisibility(View.VISIBLE);
+            }
         });
         activatedQuestionView.setVisibility(View.VISIBLE);
 

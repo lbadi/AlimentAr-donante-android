@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import proyectoalimentar.alimentardonanteapp.model.NotificationType;
 import proyectoalimentar.alimentardonanteapp.utils.CustomNotificationBuilder;
@@ -17,6 +18,7 @@ public class CustomGcmListenerService extends GcmListenerService{
 
     private static final String TAG = "MyGcmListenerService";
     private static final String NOTIFICATION_TITLE = "Titulo de notification";
+    AtomicInteger notificatioIdGenerator = new AtomicInteger();
 
     /**
      * Called when message is received.
@@ -30,8 +32,9 @@ public class CustomGcmListenerService extends GcmListenerService{
         Log.d(TAG, "Keyset: " + data.keySet());
         String message = data.getString("message_body");
         String notificationType = data.getString("n_type");
-        String donationId = data.getString("user_id");
+        String donationId = data.getString("donation_id");
         String userName = data.getString("user_name");
+        String userId = data.getString("user_id");
 
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
@@ -47,10 +50,20 @@ public class CustomGcmListenerService extends GcmListenerService{
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        int notificationId = 0;
-        if(notificationType.equals(NotificationType.ACTIVATION_TIME_PASSED)){
-            notificationId = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
-        }
+        int notificationId = getNotificationId(notificationType);
         notificationManager.notify(notificationId /* ID of notification */,CustomNotificationBuilder.build(notificationType,message,this, donationId,userName));
+    }
+
+
+    /**
+     * Generate an id for the notification of type notificationType.
+     * @param notificationType
+     * @return
+     */
+    private int getNotificationId(NotificationType notificationType){
+        if(notificationType.equals(NotificationType.ACTIVATION_TIME_PASSED)){
+            return notificatioIdGenerator.incrementAndGet();
+        }
+        return 0;
     }
 }

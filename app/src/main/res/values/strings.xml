@@ -79,6 +79,9 @@
     <!--Donation activated question view-->
     <string name="activated_question">¿El usuario %1$s ya retiro la donación?</string>
 
+    <!--Qualify volunteer view-->
+    <string name="qualify_question">¿Como calificas al voluntario %1$s?</string>
+
     <!--Notifications-->
     <string name="notifiaction_activated_title">Donación activada</string>
     <string name="notifiaction_expired_title">Donación expirada</string>
