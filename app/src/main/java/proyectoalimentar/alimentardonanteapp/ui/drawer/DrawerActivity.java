@@ -1,15 +1,15 @@
 package proyectoalimentar.alimentardonanteapp.ui.drawer;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.annimon.stream.Stream;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -17,18 +17,16 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.Configuration;
-import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
 import proyectoalimentar.alimentardonanteapp.model.NotificationType;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
 import proyectoalimentar.alimentardonanteapp.repository.UserRepository;
+import proyectoalimentar.alimentardonanteapp.services.DonationWatcherService;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.ActivatedQuestionView;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
@@ -36,6 +34,14 @@ import proyectoalimentar.alimentardonanteapp.ui.donations.QualifyVolunteerView;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import proyectoalimentar.alimentardonanteapp.utils.UserStorage;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import javax.inject.Inject;
+
+import proyectoalimentar.alimentardonanteapp.R;
 
 public class DrawerActivity extends AppCompatActivity {
 

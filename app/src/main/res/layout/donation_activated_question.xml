@@ -64,7 +64,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_cancel"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/red"
                     android:layout_marginRight="42dp"
                     />
 
@@ -74,7 +74,7 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_check"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/green"
                     />
 
             </LinearLayout>
