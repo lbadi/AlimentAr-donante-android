@@ -23,7 +23,16 @@ public class Configuration {
     public static final LatLng NORTHEAST_BORDER = new LatLng(-34.542276,-58.361092);
     public static final LatLng SOUTHWEST_BORDER = new LatLng(-34.666050,-58.520393);
 
+    //Qualify
     public static final int MAX_QUALIFICATION = 5;
     public static final int MIN_QUALIFICATION = 1;
+
+    //Item
+    public static final int MAX_QUANTITY = 20;
+    public static final int MIN_QUANTITY = 1;
+
+
+    //Util
+    public static final String PRODUCT_TYPES = "PRODUCT_TYPES";
 
 }

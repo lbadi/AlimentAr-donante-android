@@ -55,6 +55,12 @@
     <string name="error_create_donation">Error al crear la donación</string>
     <string name="donation_created">Donación creada con exito</string>
 
+    <!--Items-->
+    <string name="item_quantity">Cantidad</string>
+    <string name="measure_unit_default">kg</string>
+
+
+
     <!--Nav-Items-->
     <string name="sign_out">Cerrar sesión</string>
     <string name="new_donation">Crear donación</string>

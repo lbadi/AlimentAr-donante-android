@@ -6,6 +6,7 @@ import proyectoalimentar.alimentardonanteapp.network.DonationService;
 import proyectoalimentar.alimentardonanteapp.network.UserService;
 import proyectoalimentar.alimentardonanteapp.network.NotificationService;
 import proyectoalimentar.alimentardonanteapp.network.RetrofitServices;
+import proyectoalimentar.alimentardonanteapp.network.UtilService;
 
 @Module
 public class NetworkModule {
@@ -23,5 +24,10 @@ public class NetworkModule {
     @Provides
     NotificationService provideNotificationService(){
         return RetrofitServices.getService(NotificationService.class);
+    }
+
+    @Provides
+    UtilService provideUtilService(){
+        return RetrofitServices.getService(UtilService.class);
     }
 }

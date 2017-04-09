@@ -5,12 +5,17 @@ import android.support.v4.app.Fragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.R;
+import proyectoalimentar.alimentardonanteapp.model.Item;
 import proyectoalimentar.alimentardonanteapp.repository.DonationRepository;
 import proyectoalimentar.alimentardonanteapp.repository.RepoCallBack;
+import proyectoalimentar.alimentardonanteapp.repository.UtilRepository;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -64,11 +69,18 @@ public class NewDonationFragment extends Fragment{
     Switch allDaySwitch;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+    @BindView(R.id.item_list)
+    RecyclerView itemList;
+    @BindView(R.id.new_item_button)
+    View newItemButton;
+
 
     @Inject
     LayoutInflater layoutInflater;
     @Inject
     DonationRepository donationRepository;
+    @Inject
+    UtilRepository utilRepository;
 
     OnDonationCreatedListener onDonationCreatedListener;
 
@@ -80,6 +92,8 @@ public class NewDonationFragment extends Fragment{
 
     CharSequence lastTimeSelectedFrom;
     CharSequence lastTimeSelectedTo;
+
+    ItemAdapter itemAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,6 +114,14 @@ public class NewDonationFragment extends Fragment{
         setSwitchChangeListener();
         setDateAndTimeComponents();
         setupDrawer();
+        setupItems();
+        newItemButton.setOnClickListener( v -> addItem());
+    }
+
+    private void setupItems(){
+        itemAdapter = new ItemAdapter(utilRepository);
+        itemList.setAdapter(itemAdapter);
+        itemList.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     private void setDateAndTimeComponents(){
@@ -267,6 +289,10 @@ public class NewDonationFragment extends Fragment{
 
     public interface OnDonationCreatedListener{
         void onDonationCreated();
+    }
+
+    public void addItem(){
+        itemAdapter.addItem(new Item());
     }
 
 }

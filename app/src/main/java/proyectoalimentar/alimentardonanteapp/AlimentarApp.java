@@ -12,6 +12,7 @@ import proyectoalimentar.alimentardonanteapp.di.module.AppModule;
 import proyectoalimentar.alimentardonanteapp.di.module.NetworkModule;
 import proyectoalimentar.alimentardonanteapp.services.RegistrationIntentService;
 import proyectoalimentar.alimentardonanteapp.ui.donations.DonationFragment;
+import proyectoalimentar.alimentardonanteapp.ui.donations.ItemFragment;
 import proyectoalimentar.alimentardonanteapp.ui.donations.NewDonationFragment;
 import proyectoalimentar.alimentardonanteapp.ui.drawer.DrawerActivity;
 import proyectoalimentar.alimentardonanteapp.ui.login.LoginActivity;
@@ -22,6 +23,7 @@ import proyectoalimentar.alimentardonanteapp.ui.signUp.MainDataSignUpFragment;
 import proyectoalimentar.alimentardonanteapp.ui.signUp.SignUpActivity;
 import proyectoalimentar.alimentardonanteapp.ui.terms_and_condition.TermsAndConditionFragment;
 import proyectoalimentar.alimentardonanteapp.ui.view.DonationView;
+import proyectoalimentar.alimentardonanteapp.ui.view.ItemView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -38,11 +40,10 @@ public class AlimentarApp extends Application {
         Fresco.initialize(this);
     }
 
+
     public static Context getContext() {
         return context;
     }
-
-
 
     public static void inject(LoginActivity target) {
         DaggerAppComponent.builder()
@@ -76,6 +77,7 @@ public class AlimentarApp extends Application {
     public static void inject(NewDonationFragment target) {
         DaggerAppComponent.builder()
                 .appModule(new AppModule(target.getActivity()))
+                .networkModule(new NetworkModule())
                 .build()
                 .inject(target);
     }
@@ -101,7 +103,21 @@ public class AlimentarApp extends Application {
                 .inject(fragment);
     }
 
+    public static void inject(ItemFragment fragment){
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(fragment.getActivity()))
+                .build()
+                .inject(fragment);
+    }
+
     public static void inject(DonationView view){
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(view.getContext()))
+                .build()
+                .inject(view);
+    }
+
+    public static void inject(ItemView view){
         DaggerAppComponent.builder()
                 .appModule(new AppModule(view.getContext()))
                 .build()
