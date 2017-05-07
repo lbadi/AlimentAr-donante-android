@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class ItemView extends FrameLayout{
     public Spinner categorySpinner;
     @BindView(R.id.measure_item)
     public TextView measureItem;
+    @BindView(R.id.remove_item)
+    public ImageView removeItem;
 
     private ArrayAdapter<ProductType> productTypeArrayAdapter;
     private ArrayAdapter<Integer> quantityArrayAdapter;
@@ -83,7 +86,7 @@ public class ItemView extends FrameLayout{
 
     }
 
-    public void setupProductTypeSpinner(){
+    private void setupProductTypeSpinner(){
 
         productTypeArrayAdapter = new ArrayAdapter<>(
                 this.getContext(), android.R.layout.simple_spinner_item, productTypes);
@@ -104,6 +107,14 @@ public class ItemView extends FrameLayout{
             }
         });
 
+    }
+
+    /**
+     * Add a listener to the remove image.
+     * @param onClickListener
+     */
+    public void setupRemoveItem(OnClickListener onClickListener){
+        removeItem.setOnClickListener(onClickListener);
     }
 
     public List<String> getName(List<ProductType> productTypes){

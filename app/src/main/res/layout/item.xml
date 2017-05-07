@@ -25,6 +25,17 @@
         android:id="@+id/measure_item"
         android:hint="@string/measure_unit_default"
         android:maxLines="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/remove_item"
+            android:src="@drawable/ic_cancel"
+            android:tint="@color/red"/>
+    </LinearLayout>
 
 
 

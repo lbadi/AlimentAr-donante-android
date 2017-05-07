@@ -42,18 +42,6 @@ android {
             storeFile file(keystoreProperties['storeFile'])
             storePassword keystoreProperties['storePassword']
         }
-//        stage {
-//            storeFile file('keystore/debug.keystore')
-//            storePassword 'android'
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//        }
-//        prod {
-//            storeFile file('keystore/prod.keystore')
-//            storePassword 'hola123'
-//            keyAlias 'alimentARDonante'
-//            keyPassword 'hola123'
-//        }
     }
     buildTypes {
         debug {

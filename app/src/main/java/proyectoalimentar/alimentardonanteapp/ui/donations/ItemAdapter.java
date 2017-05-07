@@ -96,6 +96,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         void populateWithItem(Item item){
             itemView.setItem(item);
             itemView.setProductTypes(productTypes);
+            itemView.setupRemoveItem(v -> removeItem(item));
         }
     }
 }

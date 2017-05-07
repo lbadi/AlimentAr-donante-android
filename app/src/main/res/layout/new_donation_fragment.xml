@@ -226,6 +226,7 @@
         android:src="@drawable/ic_add"
         app:fabSize="normal"
         app:layout_anchor="@id/item_list"
+        app:paddingStart="5dp"
         app:layout_anchorGravity="bottom|center" />
 
 </android.support.design.widget.CoordinatorLayout>
