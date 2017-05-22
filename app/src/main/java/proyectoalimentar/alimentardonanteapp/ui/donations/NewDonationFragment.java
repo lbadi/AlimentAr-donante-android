@@ -195,8 +195,8 @@ public class NewDonationFragment extends Fragment{
         String description = descriptionText.getText().toString();
 
         progressBar.setVisibility(ProgressBar.VISIBLE);
-        donationRepository.createDonation(description, dateTimeFrom.toString(),
-                dateTimeTo.toString(), new RepoCallBack<Boolean>() {
+        donationRepository.createDonation(description, dateTimeFrom,
+                dateTimeTo, itemAdapter.getItems(), new RepoCallBack<Boolean>() {
             @Override
             public void onSuccess(Boolean created) {
                 progressBar.setVisibility(ProgressBar.GONE);

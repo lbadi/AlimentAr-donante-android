@@ -91,12 +91,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this,view);
+            itemView.setProductTypes(productTypes);
         }
 
         void populateWithItem(Item item){
             itemView.setItem(item);
-            itemView.setProductTypes(productTypes);
             itemView.setupRemoveItem(v -> removeItem(item));
         }
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 }

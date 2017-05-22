@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Donation implements Serializable{
 
@@ -17,6 +20,8 @@ public class Donation implements Serializable{
     @SerializedName("pickup_time_to")
     DateTime pickupTimeTo;
     Donator donator;
+    @SerializedName("product_attributes")
+    List<Item> items = new ArrayList<>();
 
     public Donation(Integer id,Status status, String description, DateTime pickupTimeFrom, DateTime pickupTimeTo,
                     Donator donator){
@@ -50,6 +55,18 @@ public class Donation implements Serializable{
 
     public Donator getDonator() {
         return donator;
+    }
+
+    /**
+     * Add all the items.
+     * @param items
+     * @return
+     */
+    public void addItems(List<Item> items){
+        if(items == null){
+            throw new IllegalArgumentException("products_attributes cannot be null");
+        }
+        this.items.addAll(items);
     }
 
 }

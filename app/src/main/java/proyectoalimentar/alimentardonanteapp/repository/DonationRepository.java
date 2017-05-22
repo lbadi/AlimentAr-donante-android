@@ -1,6 +1,8 @@
 package proyectoalimentar.alimentardonanteapp.repository;
 
 
+import org.joda.time.DateTime;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.model.AuthenticatedUser;
 import proyectoalimentar.alimentardonanteapp.model.Donation;
 import proyectoalimentar.alimentardonanteapp.model.Donator;
+import proyectoalimentar.alimentardonanteapp.model.Item;
 import proyectoalimentar.alimentardonanteapp.model.Qualification;
 import proyectoalimentar.alimentardonanteapp.network.DonationService;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
@@ -32,9 +35,11 @@ public class DonationRepository {
 
     }
 
-    public void createDonation(String description, String pickupTimeFrom,
-                               String pickUpTimeTo, RepoCallBack<Boolean> repoCallBack){
-        donationService.create(description,pickupTimeFrom,pickUpTimeTo).enqueue(new Callback<Void>() {
+    public void createDonation(String description, DateTime pickupTimeFrom,
+                               DateTime pickUpTimeTo, List<Item> items, RepoCallBack<Boolean> repoCallBack){
+        Donation donation = new Donation(null,null,description, pickupTimeFrom, pickUpTimeTo, null);
+        donation.addItems(items);
+        donationService.create(donation).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 repoCallBack.onSuccess(response.isSuccessful());

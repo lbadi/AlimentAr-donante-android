@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProductType {
 
+    String id;
     String name;
     @SerializedName("measurement_unit")
     String measurementUnit;
@@ -23,6 +24,10 @@ public class ProductType {
 
     public String getMeasurementUnit() {
         return measurementUnit;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override
