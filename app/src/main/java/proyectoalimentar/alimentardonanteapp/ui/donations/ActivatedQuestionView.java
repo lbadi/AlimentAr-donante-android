@@ -108,7 +108,7 @@ public class ActivatedQuestionView extends FrameLayout {
                     if (answered) {
                         ActivatedQuestionView.this.setVisibility(GONE);
                         if (onResponseCallback != null) {
-                            onResponseCallback.onResponse(true);
+                            onResponseCallback.onResponse(false);
                         }
                     } else {
                         onError(null);
