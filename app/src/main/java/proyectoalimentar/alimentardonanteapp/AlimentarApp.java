@@ -2,6 +2,7 @@ package proyectoalimentar.alimentardonanteapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -38,6 +39,9 @@ public class AlimentarApp extends Application {
         JodaTimeAndroid.init(this);
         setupCalligraphy();
         Fresco.initialize(this);
+
+        //Register GCM Token
+        registerToken();
     }
 
 
@@ -151,6 +155,12 @@ public class AlimentarApp extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+    }
+
+    private void registerToken(){
+        //Only register token if is not registered yet.
+        Intent intent = new Intent(this, RegistrationIntentService.class);
+        startService(intent);
     }
 
 }

@@ -92,7 +92,7 @@ public class QualifyVolunteerView extends FrameLayout{
                 @Override
                 public void onError(String error) {
                     QualifyVolunteerView.this.setVisibility(GONE);
-                    Toast.makeText(getContext(), R.string.cancel_error, Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(), R.string.qualify_error, Toast.LENGTH_SHORT);
                 }
             });
         }
@@ -121,7 +121,7 @@ public class QualifyVolunteerView extends FrameLayout{
                 public void onError(String error) {
                     progressBar.setVisibility(GONE);
                     QualifyVolunteerView.this.setVisibility(GONE);
-                    Toast.makeText(getContext(), R.string.cancel_error, Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(), R.string.qualify_error, Toast.LENGTH_SHORT);
                 }
             });
         }

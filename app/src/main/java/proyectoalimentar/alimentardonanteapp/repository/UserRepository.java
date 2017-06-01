@@ -92,7 +92,7 @@ public class UserRepository {
                     if(response.isSuccessful()){
                         Log.i("Delete token", "Delete woken was successfully deleted");
                         userStorage.logout();
-                        removeToken();
+                        UserRepository.removeToken();
                         callBack.onSuccess(null);
                     }else{
                         callBack.onError(null);
@@ -106,7 +106,7 @@ public class UserRepository {
             });
         }else{
             userStorage.logout();
-            removeToken();
+            UserRepository.removeToken();
             callBack.onSuccess(null);
         }
 
@@ -166,12 +166,20 @@ public class UserRepository {
         });
     }
 
-    private void removeToken(){
+    public static void removeToken(){
         StorageUtils.clearKey(Configuration.SENT_TOKEN_TO_SERVER); //Clear token
     }
 
-    private boolean isTokenPresent(){
+    public static boolean isTokenPresent(){
         return StorageUtils.getBooleanFromSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, false);
+    }
+
+    public static void setTokenPresent(boolean value){
+        StorageUtils.storeInSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, value);
+    }
+
+    public static void storeToken(String token){
+        StorageUtils.storeInSharedPreferences(Configuration.TOKEN, token);
     }
 
     public void uploadPhoto(Bitmap bitmap, RepoCallBack<Boolean> repoCallBack){

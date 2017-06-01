@@ -83,8 +83,6 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     private void init(@Nullable Bundle savedInstanceState){
-        //Register GCM Token
-        registerToken();
         //Put user information in nav-bar Header
         fetchDonatorInformation();
         drawerItems = new HashMap<>();
@@ -172,15 +170,6 @@ public class DrawerActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
-    private void registerToken(){
-        if(!StorageUtils.getBooleanFromSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, false)){
-            //Only register token if is not registered yet.
-            Intent intent = new Intent(this, RegistrationIntentService.class);
-            startService(intent);
-        }
-    }
-
 
     public void fetchDonatorInformation(){
         userRepository.getMyInformation(new RepoCallBack<Donator>() {

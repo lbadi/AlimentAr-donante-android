@@ -14,6 +14,7 @@ import proyectoalimentar.alimentardonanteapp.AlimentarApp;
 import proyectoalimentar.alimentardonanteapp.Configuration;
 import proyectoalimentar.alimentardonanteapp.R;
 import proyectoalimentar.alimentardonanteapp.network.NotificationService;
+import proyectoalimentar.alimentardonanteapp.repository.UserRepository;
 import proyectoalimentar.alimentardonanteapp.utils.StorageUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,7 +66,7 @@ public class RegistrationIntentService extends IntentService {
                 }else{
                     Log.i(TAG, "GCM Registration Token: " + "Registration complete");
                     storeSendStatus(true);
-                    storeToken(token);
+                    UserRepository.storeToken(token);
                 }
             }
 
@@ -78,10 +79,7 @@ public class RegistrationIntentService extends IntentService {
     }
 
     private void storeSendStatus(boolean send){
-        StorageUtils.storeInSharedPreferences(Configuration.SENT_TOKEN_TO_SERVER, send);
+        UserRepository.setTokenPresent(send);
     }
 
-    private void storeToken(String token){
-        StorageUtils.storeInSharedPreferences(Configuration.TOKEN, token);
-    }
 }
