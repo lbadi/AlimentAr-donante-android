@@ -102,6 +102,9 @@ public class DonationView extends FrameLayout{
         if(donation.getDescription() != null){
             description.setText(donation.getDescription());
         }
+        if(donation.getVolunteer() != null && donation.getVolunteer().getName() != null) {
+            assignedTo.setText(donation.getVolunteer().getName());
+        }
     }
 
     private void setOnCancelListener(){

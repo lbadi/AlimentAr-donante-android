@@ -22,6 +22,7 @@ public class Donation implements Serializable{
     Donator donator;
     @SerializedName("product_attributes")
     List<Item> items = new ArrayList<>();
+    Volunteer volunteer;
 
     public Donation(Integer id,Status status, String description, DateTime pickupTimeFrom, DateTime pickupTimeTo,
                     Donator donator){
@@ -55,6 +56,10 @@ public class Donation implements Serializable{
 
     public Donator getDonator() {
         return donator;
+    }
+
+    public Volunteer getVolunteer() {
+        return volunteer;
     }
 
     /**

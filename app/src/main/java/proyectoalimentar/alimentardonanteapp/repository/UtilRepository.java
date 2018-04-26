@@ -39,9 +39,9 @@ public class UtilRepository implements CachedRepository{
         Type listProductType = new TypeToken<ArrayList<ProductType>>(){}.getType();
 
         List<ProductType> productType = StorageUtils.getObjectFromSharedPreferences(Configuration.PRODUCT_TYPES, listProductType);
-        if(productType != null){
-            repoCallBack.onSuccess(productType);
-        }else{
+//        if(productType != null){
+//            repoCallBack.onSuccess(productType);
+//        }else{
             utilService.listProductType().enqueue(new Callback<List<ProductType>>() {
                 @Override
                 public void onResponse(Call<List<ProductType>> call, Response<List<ProductType>> response) {
@@ -58,7 +58,7 @@ public class UtilRepository implements CachedRepository{
                     repoCallBack.onError(t.getMessage());
                 }
             });
-        }
+//        }
     }
 
     @Override
