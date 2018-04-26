@@ -104,6 +104,8 @@ public class DonationView extends FrameLayout{
         }
         if(donation.getVolunteer() != null && donation.getVolunteer().getName() != null) {
             assignedTo.setText(donation.getVolunteer().getName());
+        } else {
+            assignedTo.setText(getContext().getString(R.string.not_assigned));
         }
     }
 
